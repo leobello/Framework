@@ -25,6 +25,6 @@ public class Gnaouas {
         leo.friendReq(mouataz);
         Contenu<Photo> photo = new Contenu<Photo>(new Photo("/home/test.jpg"));
         
-    }
+    } 
     
 }
