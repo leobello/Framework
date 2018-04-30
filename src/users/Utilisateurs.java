@@ -7,14 +7,14 @@ package users;
 import contenu.Contenu;
 import java.util.ArrayList;
 import services.*;
-import sun.security.util.Password;
+
 /**
  *
  * @author near
  */
 public abstract class Utilisateurs implements _Utilisateurs{
     protected String pseudo;
-    protected Password password;
+    protected String password;
     protected ArrayList<_Reactions> reactions;
     protected ArrayList<_Partage> partagePub;
     protected ArrayList<_Partage> partagePriv;

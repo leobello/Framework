@@ -5,14 +5,13 @@
  */
 package services;
 
-import sun.security.util.Password;
 
 /**
  *
  * @author near
  */
 public class CtrlUser implements _Administration {
-    private Password password;
+    private String password;
     @Override
     public void setPassword() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
