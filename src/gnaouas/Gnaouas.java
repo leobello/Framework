@@ -24,6 +24,7 @@ public class Gnaouas {
         User mouataz = new User("mouataz",22);
         leo.friendReq(mouataz);
         Contenu<Photo> photo = new Contenu<Photo>(new Photo("/home/test.jpg"));
+        photo.dislike(mouataz);
         
     } 
     
