@@ -37,12 +37,14 @@ public abstract class Utilisateurs implements _Utilisateurs{
     public _Utilisateurs getFriendReq(int i){return friendrq.get(i);}
     
     public void publierPub(Contenu c){
-        
+    	PartagerPublic partage = new PartagerPublic(this, c);
+    	
     }
     public void like(Contenu c){
         Like r = new Like(this,c);
         reactions.add(r);
     }
+    
     
     
      

@@ -5,10 +5,30 @@
  */
 package services;
 
+import contenu.Contenu;
+import users._Utilisateurs;
+
 /**
  *
  * @author near
  */
-public class PartagerAmis {
+public class PartagerAmis implements _Partage{
+
+	@Override
+	public void partager(_Utilisateurs owner, Contenu c) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void suprimer(_Utilisateurs owner, Contenu c) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+
+	
+	
     
 }

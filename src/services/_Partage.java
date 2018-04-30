@@ -5,10 +5,16 @@
  */
 package services;
 
+import contenu.Contenu;
+import contenu.Types;
+import users._Utilisateurs;
+
 /**
  *
  * @author near
  */
-public interface _Partage {
-    
+public interface _Partage<T extends Types> {
+    public void partager(_Utilisateurs owner, Contenu<T> c);
+    public void suprimer(_Utilisateurs owner, Contenu<T> c);
+
 }

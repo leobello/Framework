@@ -1,5 +1,5 @@
 package serveur;
 
-public class Serveur {
+public class Serveur implements _Serveur{
 
 }
