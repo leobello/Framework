@@ -5,19 +5,29 @@
  */
 package services;
 
-import contenu.*;
-import users._Utilisateurs;
+import contenu.Contenu;
+import contenu.Types;
+import users.*;
 
 /**
  *
  * @author near
  */
-public class PartagerAmis implements _Partage{
+public class Public implements _Partage{
+	private _Utilisateurs owner;
+	
 
+	public Public(_Utilisateurs owner) {
+		// TODO Auto-generated method stub
+		this.owner = owner;
+	}
+	
 	@Override
 	public void partager(_Utilisateurs owner, Contenu<Types> c) {
 		// TODO Auto-generated method stub
-		
+		Utilisateurs user = (Utilisateurs)this.owner;
+		c.setPartage(this);
+		user.publierPub(c);
 	}
 
 	@Override
@@ -25,10 +35,6 @@ public class PartagerAmis implements _Partage{
 		// TODO Auto-generated method stub
 		
 	}
-
-	
-
 	
 	
-    
 }

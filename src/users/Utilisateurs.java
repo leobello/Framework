@@ -39,14 +39,21 @@ public abstract class Utilisateurs implements _Utilisateurs{
     public _Utilisateurs getFriendReq(int i){return friendrq.get(i);}
     
     public void publierPub(Contenu<Types> c){
-    		PartagerPublic partage = new PartagerPublic(this);
+    		Public partage = new Public(this);
     		partagePub.add(partage);    	
     }
+    public void publierPriv(Contenu<Types> c){
+		Privee partage = new Privee(this);
+		partagePriv.add(partage);    	
+    }
     
-        
-    public void like(Contenu<Types> c){
+    
+    public void liker(Contenu<Types> c){
         Like r = new Like(this,c);
         reactions.add(r);
+    }
+    public void commenter(Contenu<Types> c) {
+    		c.getUser();
     }
     
     
