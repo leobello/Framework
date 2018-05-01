@@ -6,6 +6,7 @@
 package contenu;
 
 import java.util.ArrayList;
+
 import users._Utilisateurs;
 
 /**
@@ -19,17 +20,27 @@ public class Contenu<T extends Types>{
     protected ArrayList<_Utilisateurs> likes;
     protected ArrayList<_Utilisateurs> dislikes;
     protected ArrayList<Commentaire> commentaires;
-
-    
-    
     
 	public Contenu(T c){
         this.contenu = c;
     }
+	
+	public Contenu(T c, _Utilisateurs user) {
+		this.contenu = c;
+		this.owner = user;
+	}
+	
+	public void setUser(_Utilisateurs user) { this.owner = user; }
+	public _Utilisateurs getUser() { return this.owner; }
+    
+	public Types getContenu() { return this.contenu; }
+    public void setContenu(T type) { this.contenu = type; }
+    
     
     public void like(_Utilisateurs user){
         likes.add(user);        
     }
+    
     public void unLike(_Utilisateurs user){
         likes.remove(user);
     }
@@ -37,31 +48,35 @@ public class Contenu<T extends Types>{
     public void dislike(_Utilisateurs user){
         dislikes.add(user);        
     }
+    
     public void unDislike(_Utilisateurs user){
         dislikes.remove(user);        
     }
+    
     public int nbLike(){
         return this.likes.size();
     }
+    
     public int nbDislike(){
         return this.dislikes.size();
     }
+    
     public int nbComment(){
         return this.commentaires.size();
     }
+    
     public ArrayList<_Utilisateurs> getLike(){
         return this.likes;
     }
+    
     public ArrayList<_Utilisateurs> getDislike(){
         return this.dislikes;
     }
+    
     public ArrayList<Commentaire> getComment(){
         return this.commentaires;
     }
     
-    public Types getContenu() { return this.contenu; }
-    
     public String getType() { return this.contenu.getType(); }
-    
     
 }
