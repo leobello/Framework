@@ -16,5 +16,5 @@ public class Commentaire extends Types {
         super.name = this.getClass().getName();
         this.comment = comment;
     }
-    public String getComment(){return this.comment;}
+    public String getComment(){ return this.comment; }
 }

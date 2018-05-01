@@ -22,8 +22,9 @@ public class Contenu<T extends Types>{
 
     
     
-    public Contenu(T contenu){
-        this.contenu = contenu;
+    
+	public Contenu(T c){
+        this.contenu = c;
     }
     
     public void like(_Utilisateurs user){
@@ -57,6 +58,10 @@ public class Contenu<T extends Types>{
     public ArrayList<Commentaire> getComment(){
         return this.commentaires;
     }
+    
+    public Types getContenu() { return this.contenu; }
+    
+    public String getType() { return this.contenu.getType(); }
     
     
 }

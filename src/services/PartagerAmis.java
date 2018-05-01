@@ -5,7 +5,7 @@
  */
 package services;
 
-import contenu.Contenu;
+import contenu.*;
 import users._Utilisateurs;
 
 /**
@@ -15,13 +15,13 @@ import users._Utilisateurs;
 public class PartagerAmis implements _Partage{
 
 	@Override
-	public void partager(_Utilisateurs owner, Contenu c) {
+	public void partager(_Utilisateurs owner, Contenu<Types> c) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void suprimer(_Utilisateurs owner, Contenu c) {
+	public void suprimer(_Utilisateurs owner, Contenu<Types> c) {
 		// TODO Auto-generated method stub
 		
 	}

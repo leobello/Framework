@@ -6,7 +6,8 @@
 package services;
 
 import contenu.Contenu;
-import users._Utilisateurs;
+import contenu.Types;
+import users.*;
 
 /**
  *
@@ -15,20 +16,21 @@ import users._Utilisateurs;
 public class PartagerPublic implements _Partage{
 	private _Utilisateurs owner;
 	
+
 	public PartagerPublic(_Utilisateurs owner) {
 		// TODO Auto-generated method stub
 		this.owner = owner;
-		
 	}
+	
 	@Override
-	public void partager(_Utilisateurs owner, Contenu c) {
+	public void partager(_Utilisateurs owner, Contenu<Types> c) {
 		// TODO Auto-generated method stub
-
-		
+		Utilisateurs user = (Utilisateurs)this.owner;
+		user.publierPub(c);
 	}
 
 	@Override
-	public void suprimer(_Utilisateurs owner, Contenu c) {
+	public void suprimer(_Utilisateurs owner, Contenu<Types> c) {
 		// TODO Auto-generated method stub
 		
 	}
