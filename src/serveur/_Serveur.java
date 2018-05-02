@@ -8,7 +8,7 @@ import java.rmi.RemoteException;
 import client._Client;
 
 /*
- * L'interface qui contient les méthodes dont les serveurs doit fournir aux lients
+ * L'interface qui contient les méthodes dont les serveurs doit fournir aux clients
  */
 public interface _Serveur extends Remote {
 	
@@ -17,4 +17,5 @@ public interface _Serveur extends Remote {
 	 * @param c : le client qui va se connecter au serveur
 	 */
 	public boolean login(_Client c) throws RemoteException;
+	
 }
