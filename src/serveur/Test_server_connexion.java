@@ -17,7 +17,7 @@ public class Test_server_connexion {
 		    Naming.rebind(url, serv);
 		    System.out.println("Bind réaliser ");
 		  } catch (Exception e) {
-		     e.printStackTrace(); 
+		     e.printStackTrace();  
 		  } 
 		/*Inscription isc=new Inscription();
 		isc.ajouter();
