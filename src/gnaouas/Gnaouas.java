@@ -5,9 +5,9 @@
  */
 package gnaouas;
 import contenu.*;
-import services.*;
+
 import users.User;
-import users._Utilisateurs;
+
 
 /**
  *
@@ -22,6 +22,7 @@ public class Gnaouas {
         // TODO code application logic here
         User leo = new User("leo",27);
         User mouataz = new User("mouataz",22);
+        // 
         leo.friendReq(mouataz);
         Contenu<Photo> photo = new Contenu<Photo>(new Photo("/home/test.jpg"));
         photo.dislike(mouataz);
