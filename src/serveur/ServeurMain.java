@@ -24,12 +24,16 @@ public class ServeurMain {
 			// Définir le nom du fichier à envoyer
 			fs.setFile("night.mp4");
 	
-			// 
-			Naming.rebind("rmi://"+InetAddress.getLocalHost().getHostAddress()+"/Gnaouas", fs);
-			System.out.println("File Server is Ready");
+			// Enregistrer l'objet créé dans le registre de noms en lui affectant un nom
+			System.out.println(InetAddress.getLocalHost().getHostAddress());
+			String url = "rmi://"+InetAddress.getLocalHost().getHostAddress()+"/Gnaouas";
+			System.out.println("Enregistrement de l'objet avec l'url : " + url);
+			Naming.rebind(url , fs);
+			System.out.println("Serveur est prêt");
 			
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 	}	
 }
+;
