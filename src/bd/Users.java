@@ -9,7 +9,7 @@ import java.util.Scanner;
 import stockage.*;
 
 
-public class Users {
+public class Users implements _Users {
 	
 	private ArrayList<_Utilisateurs> inscrits;
 	public static int nbInscrit = 0;
@@ -59,6 +59,7 @@ public class Users {
 				
 		}
 				
+		nbInscrit++;
 		try {
 			enregistrerBD();
 		} catch (IOException e) {
@@ -71,15 +72,18 @@ public class Users {
 	public ArrayList<_Utilisateurs> getBD(){
 		return inscrits;
 	}
+	public int getnbInscrit(){
+		return nbInscrit;
+	}
 	
 	public void enregistrerBD() throws FileNotFoundException, IOException{
-		Serialization sz = new Serialization("DataBase",this.inscrits);
+		Serialization sz = new Serialization("DataBase.txt",this.inscrits);
 	}
 	
 	public void lireBDFile(){
 		
 		try {
-			Deserialization dsz = new Deserialization("DataBase");
+			Deserialization dsz = new Deserialization("DataBase.txt");
 			inscrits = (ArrayList<_Utilisateurs>) dsz.ObjectLu();
 		} catch (ClassNotFoundException | IOException e) {
 			// TODO Auto-generated catch block
