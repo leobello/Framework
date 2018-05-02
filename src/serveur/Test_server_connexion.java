@@ -11,7 +11,7 @@ public class Test_server_connexion {
 		   /* if (System.getSecurityManager() == null) { 
 		      System.setSecurityManager(new RMISecurityManager());
 		    }*/
-		    Inscription serv=new Inscription();
+		    Actor serv=new Actor();
 		    String url = "rmi://localhost/Gnaouas";
 		    System.out.println("Enregistrement de l'objet avec l'url : " + url);
 		    Naming.rebind(url, serv);

@@ -20,11 +20,11 @@ public class ClientMain {
 			String url = "rmi://"+hostname+"/Gnaouas";
 		    // on vérifie que l'objet retourné est bien une instance de cette interface.
 			//_Serveur server=(_Serveur)Naming.lookup(url);
-			_Inscritption server=(_Inscritption)Naming.lookup(url);
+			_Actor server=(_Actor)Naming.lookup(url);
 			System.out.println("Client : "+ c.getName() + " est connecté ");
 			//le client se connecte et serveur et il va recevoir le fichier 
 			//server.login(c);			
-			server.ajouter();
+			server.connectUser();
 			System.out.println("Fin du client");
 		}catch(Exception e){
 			e.printStackTrace();
