@@ -5,11 +5,14 @@
  */
 package users;
 
+
 import contenu.Contenu;
+import contenu.Types;
 
 import java.io.Serializable;
 
-import contenu.*;
+
+
 
 import java.util.ArrayList;
 import services.*;
