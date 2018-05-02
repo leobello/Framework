@@ -20,8 +20,8 @@ public class Gnaouas {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        User leo = new User("leo",27);
-        User mouataz = new User("mouataz",22);
+        User leo = new User("leo","123456789",27);
+        User mouataz = new User("mouataz","12456789",22);
         // 
         leo.friendReq(mouataz);
         Contenu<Photo> photo = new Contenu<Photo>(new Photo("/home/test.jpg"));

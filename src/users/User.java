@@ -12,10 +12,11 @@ import java.io.Serializable;
  * @author near
  */
 public class User  extends Utilisateurs  {
-    int age;
+	int age;
     
-    public User(String pseudo, int age){
+    public User(String pseudo, String password, int age){
         super.pseudo = pseudo;
+        super.password = password;
         this.age = age;
         super.admin = false;
     }

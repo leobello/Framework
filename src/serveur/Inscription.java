@@ -20,16 +20,17 @@ public class Inscription implements Serializable{
 	protected final File inscrit=new File("Inscri.txt");
 	protected ArrayList<Actor> lesInscits=new ArrayList<Actor>();
 	public Inscription() {}
+	
 	public void ajouter() {
 		Scanner sc=new Scanner(System.in);
 		System.out.println("Entrer un login : ");
 		String login =sc.nextLine();
 		System.out.println("Entrer un mot de passe : ");
 		String mdp=sc.nextLine();
-		System.out.println("Entrer encors une fois le mot de passe pour la vérification : ");
+		System.out.println("Entrer encore une fois le mot de passe pour la vérification : ");
 		String mdpv=sc.nextLine();
 		while(!mdpv.equals(mdp)) {
-			System.out.println("Réentrer le mot de passe et sa vérification : ");
+			System.out.println("Rerentrer le mot de passe et sa vérification : ");
 			System.out.println("Entrer un mot de passe : ");
 			mdp=sc.nextLine();
 			System.out.println("Entrer encors une fois le mot de passe pour la vérification : ");
@@ -39,7 +40,7 @@ public class Inscription implements Serializable{
 		_password=mdp;
 		Inscription.nbInscrit++;
 		lesInscits.add(new Actor(login, mdp));
-		EnregistrerInscrit(inscrit);
+		EnregistrerInscrit();
 		System.out.println("Bien Inscrit "+login);
 	}
 	public String get_user() {
@@ -54,7 +55,7 @@ public class Inscription implements Serializable{
 	public void set_password(String _password) {
 		this._password = _password;
 	}
-	protected void EnregistrerInscrit(File f) {
+	protected void EnregistrerInscrit() {
 		
 		try {
 			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(inscrit));

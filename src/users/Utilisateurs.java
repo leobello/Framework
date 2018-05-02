@@ -12,6 +12,7 @@ import java.io.Serializable;
 
 
 
+
 import java.util.ArrayList;
 import services.*;
 
@@ -33,6 +34,7 @@ public abstract class Utilisateurs implements _Utilisateurs, Serializable {
     protected boolean admin;
         
     public String getName(){return this.pseudo;}
+    public String getPassword(){return this.password;}
     
     public void setName(String name){
         this.pseudo = name;
@@ -58,6 +60,7 @@ public abstract class Utilisateurs implements _Utilisateurs, Serializable {
         Like r = new Like(this,c);
         reactions.add(r);
     }
+    
     public void commenter(Contenu<Types> c) {
     		c.getUser();
     }
