@@ -5,11 +5,13 @@
  */
 package users;
 
+import java.io.Serializable;
+
 /**
  *
  * @author near
  */
-public class User extends Utilisateurs {
+public class User  extends Utilisateurs  {
     int age;
     
     public User(String pseudo, int age){
