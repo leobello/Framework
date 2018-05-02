@@ -10,6 +10,6 @@ package services;
  * @author near
  */
 public interface _Administration {
-    void setPassword();
-    void getPassword();
+    void setPassword(String password);
+    String getPassword();
 }

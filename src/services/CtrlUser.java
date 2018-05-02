@@ -12,14 +12,17 @@ package services;
  */
 public class CtrlUser implements _Administration {
     private String password;
+    
     @Override
-    public void setPassword() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
-    public void getPassword() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String getPassword() {
+       return this.password;
     }
+
+	
     
 }

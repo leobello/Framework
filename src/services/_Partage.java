@@ -13,8 +13,8 @@ import users._Utilisateurs;
  *
  * @author near
  */
-public interface _Partage<T extends Types> {
-    public void partager(_Utilisateurs owner, Contenu<T> c);
-    public void suprimer(_Utilisateurs owner, Contenu<T> c);
+public interface _Partage {
+    public void partager(_Utilisateurs owner, Contenu<Types> c);
+    public void suprimer(_Utilisateurs owner, Contenu<Types> c);
 
 }
