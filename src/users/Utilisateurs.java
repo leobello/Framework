@@ -5,6 +5,8 @@
  */
 package users;
 import contenu.Contenu;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import services.*;
 
@@ -12,7 +14,7 @@ import services.*;
  *
  * @author near
  */
-public abstract class Utilisateurs implements _Utilisateurs{
+public abstract class Utilisateurs implements _Utilisateurs, Serializable {
     protected String pseudo;
     protected String password;
     protected ArrayList<_Reactions> reactions;
