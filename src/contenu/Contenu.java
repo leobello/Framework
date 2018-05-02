@@ -19,7 +19,7 @@ public class Contenu<T extends Types>{
     protected T contenu;
     protected _Utilisateurs owner;
     protected ArrayList<_Utilisateurs> likes;
-    protected ArrayList<_Utilisateurs> dislikes=new ArrayList<_Utilisateurs>();
+    protected ArrayList<_Utilisateurs> dislikes;
     protected ArrayList<Commentaire> commentaires;
     protected _Partage partage;
     

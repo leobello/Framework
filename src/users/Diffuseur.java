@@ -11,8 +11,17 @@ package users;
  */
 public class Diffuseur extends Utilisateurs {
 
-    public Diffuseur(String pseudo){
+
+	private static final long serialVersionUID = 1L;
+
+	public Diffuseur(String pseudo){
+		
+	}
+
+    public Diffuseur(String pseudo, String password){
+
         super.pseudo = pseudo;
+        super.password= password;
         super.admin = false;
     }
     

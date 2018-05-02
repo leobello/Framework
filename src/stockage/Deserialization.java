@@ -11,6 +11,7 @@ public class Deserialization implements Serializable {
 			this.f= new File (fichier);
 			ObjectInputStream ois =  new ObjectInputStream(new FileInputStream(fichier)) ;
 			this.ReadedObject = ois.readObject();
+			ois.close();
 		}
 		
 		public Object ObjectLu() {

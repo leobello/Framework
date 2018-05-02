@@ -10,7 +10,8 @@ public class Serialization implements Serializable {
 		this.f= new File (fichier);
 		ObjectOutputStream oos =  new ObjectOutputStream(new FileOutputStream(fichier)) ;
 		oos.writeObject(o);
-		System.out.println("done");
+		oos.close();
+		
 	}
 	
 	public String FileName(){

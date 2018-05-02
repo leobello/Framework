@@ -5,8 +5,8 @@
  */
 package gnaouas;
 import contenu.*;
+import users.*;
 
-import users.User;
 
 
 /**
@@ -20,12 +20,13 @@ public class Gnaouas {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        User leo = new User("leo",27);
+
+        Admin leo = new Admin("leo","toto");
         User mouataz = new User("mouataz",22);
-        // 
-        leo.friendReq(mouataz);
-        Contenu<Photo> photo = new Contenu<Photo>(new Photo("/home/test.jpg"),leo);
-        photo.dislike(mouataz);
+        User amine = new User("amine",22);
+        mouataz.friendReq(leo);
+        
+      
         
     } 
     
