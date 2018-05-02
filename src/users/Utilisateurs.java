@@ -43,12 +43,12 @@ public abstract class Utilisateurs implements _Utilisateurs, Serializable {
     		Public partage = new Public(this);
     		partagePub.add(partage);    	
     }
+    
     public void publierPriv(Contenu<Types> c){
 		Privee partage = new Privee(this);
 		partagePriv.add(partage);    	
     }
-    
-    
+        
     public void liker(Contenu<Types> c){
         Like r = new Like(this,c);
         reactions.add(r);
@@ -57,6 +57,7 @@ public abstract class Utilisateurs implements _Utilisateurs, Serializable {
     public void commenter(Contenu<Types> c) {
     		c.getUser();
     }
+    
     
     
     
