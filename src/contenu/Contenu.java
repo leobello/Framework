@@ -17,13 +17,14 @@ public class Contenu<T extends Types>{
     protected T contenu;
     protected _Utilisateurs owner;
     protected ArrayList<_Utilisateurs> likes;
-    protected ArrayList<_Utilisateurs> dislikes;
+    protected ArrayList<_Utilisateurs> dislikes=new ArrayList<_Utilisateurs>();
     protected ArrayList<Commentaire> commentaires;
 
     
     
-    public Contenu(T contenu){
+    public Contenu(T contenu ,_Utilisateurs usr ){
         this.contenu = contenu;
+        this.owner=usr;
     }
     
     public void like(_Utilisateurs user){
@@ -34,7 +35,8 @@ public class Contenu<T extends Types>{
     }
     
     public void dislike(_Utilisateurs user){
-        dislikes.add(user);        
+        dislikes.add(user);
+        System.out.println("la "+this.contenu.name.toString()+" de "+this.owner.getName()+" been disliked by :"+user.getName());
     }
     public void unDislike(_Utilisateurs user){
         dislikes.remove(user);        

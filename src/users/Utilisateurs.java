@@ -21,7 +21,7 @@ public abstract class Utilisateurs implements _Utilisateurs{
     protected ArrayList<_Utilisateurs> friends;
     protected ArrayList<_Utilisateurs> followed;
     protected ArrayList<_Utilisateurs> followby;
-    protected ArrayList<_Utilisateurs> friendrq;
+    protected ArrayList<_Utilisateurs> friendrq=new ArrayList<_Utilisateurs>();
     
     protected boolean admin;
     
@@ -33,6 +33,7 @@ public abstract class Utilisateurs implements _Utilisateurs{
     }
     public void friendReq(Utilisateurs user){
         user.friendrq.add(this);
+        System.out.println(user.pseudo+" added : "+this.pseudo);
     }
     public _Utilisateurs getFriendReq(int i){return friendrq.get(i);}
     
