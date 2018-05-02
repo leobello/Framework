@@ -4,9 +4,11 @@
  * and open the template in the editor.
  */
 package users;
+
 import contenu.Contenu;
 
 import java.io.Serializable;
+
 import contenu.*;
 
 import java.util.ArrayList;
