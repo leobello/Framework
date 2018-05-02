@@ -8,20 +8,23 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 
-public class Inscription implements Serializable{
+public class Inscription extends UnicastRemoteObject implements _Inscritption, Serializable{
 	private static final long serialVersionUID = 1L;	
 	protected String _user;
 	protected String _password;
 	protected static int nbInscrit=0;
 	protected final File inscrit=new File("Inscri.txt");
 	protected ArrayList<Actor> lesInscits=new ArrayList<Actor>();
-	public Inscription() {}
-	
-	public void ajouter() {
+
+	public Inscription() throws RemoteException{}
+	public void ajouter() throws RemoteException{
+
 		Scanner sc=new Scanner(System.in);
 		System.out.println("Entrer un login : ");
 		String login =sc.nextLine();
@@ -55,8 +58,11 @@ public class Inscription implements Serializable{
 	public void set_password(String _password) {
 		this._password = _password;
 	}
-	protected void EnregistrerInscrit() {
-		
+
+	protected void EnregistrerInscrit() {}
+
+	public void EnregistrerInscrit(File f)  throws RemoteException{
+
 		try {
 			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(inscrit));
 			oos.writeObject(lesInscits);
@@ -69,15 +75,23 @@ public class Inscription implements Serializable{
 			e.printStackTrace();
 		}
 	}
-	protected ArrayList<Actor> chargerUsers() throws FileNotFoundException, IOException, ClassNotFoundException {
+	public ArrayList<Actor> chargerUsers()  throws RemoteException{
 		
-			ObjectInputStream ois =  new ObjectInputStream(new FileInputStream(inscrit)) ;
-			//System.out.println(ois.readObject().getClass().toString());
-			ArrayList<Actor> users=(ArrayList<Actor>) ois.readObject();
-			ois.close();
+			ObjectInputStream ois;
+			try {
+				ois = new ObjectInputStream(new FileInputStream(inscrit));
+				ArrayList<Actor> users=(ArrayList<Actor>) ois.readObject();
+				ois.close();
+				return users;
+			} catch (IOException | ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}
+			//System.out.println(ois.readObject().getClass().toString());			
 			/*for(Utilisateur ut:users) {
 				System.out.println(ut.user+" "+ut.pass);
 			}*/
-			return users;		
+					
 	}
 }

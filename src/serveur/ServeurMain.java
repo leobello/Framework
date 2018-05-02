@@ -25,8 +25,7 @@ public class ServeurMain {
 			fs.setFile("night.mp4");
 	
 			// Enregistrer l'objet créé dans le registre de noms en lui affectant un nom
-			System.out.println(InetAddress.getLocalHost().getHostAddress());
-			String url = "rmi://"+InetAddress.getLocalHost().getHostAddress()+"/Gnaouas";
+			String url = "rmi://130.190.76.110/Gnaouas";
 			System.out.println("Enregistrement de l'objet avec l'url : " + url);
 			Naming.rebind(url , fs);
 			System.out.println("Serveur est prêt");

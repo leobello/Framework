@@ -20,5 +20,6 @@ public interface _Client extends Remote {
 	 * @return name : nom du client
 	 */
 	public String getName() throws RemoteException;
-
+	
+	
 }
