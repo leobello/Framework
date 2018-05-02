@@ -22,8 +22,10 @@ public class Inscription extends UnicastRemoteObject implements _Inscritption, S
 	protected final File inscrit=new File("Inscri.txt");
 	protected ArrayList<Actor> lesInscits=new ArrayList<Actor>();
 
+
 	public Inscription() throws RemoteException{}
 	public void ajouter() throws RemoteException{
+
 
 		Scanner sc=new Scanner(System.in);
 		System.out.println("Entrer un login : ");
@@ -59,9 +61,11 @@ public class Inscription extends UnicastRemoteObject implements _Inscritption, S
 		this._password = _password;
 	}
 
+
 	protected void EnregistrerInscrit() {}
 
 	public void EnregistrerInscrit(File f)  throws RemoteException{
+
 
 		try {
 			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(inscrit));
