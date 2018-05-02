@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package gnaouas;
-import contenu.*;
+
 import users.*;
 
 
@@ -24,6 +24,7 @@ public class Gnaouas {
         Admin leo = new Admin("leo","toto");
         User mouataz = new User("mouataz",22);
         User amine = new User("amine",22);
+        amine.friendReq(leo);
         mouataz.friendReq(leo);
         
       
