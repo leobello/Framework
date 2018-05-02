@@ -21,17 +21,21 @@ public class Inscription extends UnicastRemoteObject implements _Inscritption, S
 	protected static int nbInscrit=0;
 	protected final File inscrit=new File("Inscri.txt");
 	protected ArrayList<Actor> lesInscits=new ArrayList<Actor>();
+
+
 	public Inscription() throws RemoteException{}
 	public void ajouter() throws RemoteException{
+
+
 		Scanner sc=new Scanner(System.in);
 		System.out.println("Entrer un login : ");
 		String login =sc.nextLine();
 		System.out.println("Entrer un mot de passe : ");
 		String mdp=sc.nextLine();
-		System.out.println("Entrer encors une fois le mot de passe pour la vérification : ");
+		System.out.println("Entrer encore une fois le mot de passe pour la vérification : ");
 		String mdpv=sc.nextLine();
 		while(!mdpv.equals(mdp)) {
-			System.out.println("Réentrer le mot de passe et sa vérification : ");
+			System.out.println("Rerentrer le mot de passe et sa vérification : ");
 			System.out.println("Entrer un mot de passe : ");
 			mdp=sc.nextLine();
 			System.out.println("Entrer encors une fois le mot de passe pour la vérification : ");
@@ -41,7 +45,7 @@ public class Inscription extends UnicastRemoteObject implements _Inscritption, S
 		_password=mdp;
 		Inscription.nbInscrit++;
 		lesInscits.add(new Actor(login, mdp));
-		EnregistrerInscrit(inscrit);
+		EnregistrerInscrit();
 		System.out.println("Bien Inscrit "+login);
 	}
 	public String get_user() {
@@ -56,8 +60,13 @@ public class Inscription extends UnicastRemoteObject implements _Inscritption, S
 	public void set_password(String _password) {
 		this._password = _password;
 	}
+
+
+	protected void EnregistrerInscrit() {}
+
 	public void EnregistrerInscrit(File f)  throws RemoteException{
-		
+
+
 		try {
 			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(inscrit));
 			oos.writeObject(lesInscits);

@@ -12,13 +12,23 @@ import java.util.ArrayList;
  * @author near
  */
 public class User  extends Utilisateurs  {
+
     protected ArrayList<_Utilisateurs> friendrq;
     int age;
+
+
     
+
 	private static final long serialVersionUID = 1L;
 	
     public User(String pseudo, int age){
+    	this.pseudo = pseudo;
+    	this.age = age;
+    }
+    
+    public User(String pseudo, String password, int age){
         super.pseudo = pseudo;
+        super.password = password;
         this.age = age;
         super.admin = false;
     }

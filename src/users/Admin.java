@@ -17,8 +17,13 @@ public class Admin extends Utilisateurs {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public Admin(String pseudo){
+	
+
+
+	public Admin(String pseudo, String password){
+
         super.pseudo = pseudo;
+        super.password = password;
         super.admin = true;
     }
     

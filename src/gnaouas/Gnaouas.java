@@ -20,16 +20,13 @@ public class Gnaouas {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Admin leo = new Admin("leo");
+
+        Admin leo = new Admin("leo","toto");
         User mouataz = new User("mouataz",22);
         User amine = new User("amine",22);
         mouataz.friendReq(leo);
         
-        
-        /*
-        Contenu<Photo> photo = new Contenu<Photo>(new Photo("/home/test.jpg"),leo);
-        photo.dislike(mouataz);
-        */
+      
         
     } 
     
