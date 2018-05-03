@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
+
 public class Test_server_connexion {
 	public static void main(String[] args) throws RemoteException, FileNotFoundException, ClassNotFoundException, IOException {
 		try {
@@ -15,7 +16,7 @@ public class Test_server_connexion {
 		    String url = "rmi://localhost/Gnaouas";
 		    System.out.println("Enregistrement de l'objet avec l'url : " + url);
 		    Naming.rebind(url, serv);
-		    System.out.println("Bind réaliser ");
+		    System.out.println("Bind réaliser "); 
 		  } catch (Exception e) {
 		     e.printStackTrace();  
 		  } 

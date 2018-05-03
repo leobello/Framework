@@ -7,6 +7,6 @@ import java.util.ArrayList;
 
 public interface _Inscritption extends Remote{
 	ArrayList<Actor> chargerUsers() throws RemoteException;
-	void EnregistrerInscrit(File f) throws RemoteException;
+	void EnregistrerInscrit() throws RemoteException;
 	void ajouter() throws RemoteException;
 }
