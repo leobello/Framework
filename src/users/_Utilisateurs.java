@@ -11,6 +11,7 @@ package users;
  */
 public interface _Utilisateurs {
     public String getName();
+    public String getPassword();
     public void setName(String name);
     
 }
