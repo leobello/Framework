@@ -5,6 +5,7 @@
  */
 package users;
 
+import contenu.Commentaire;
 import contenu.Contenu;
 import contenu.Types;
 
@@ -17,9 +18,7 @@ import services.*;
  * @author near
  */
 public abstract class Utilisateurs implements _Utilisateurs, Serializable {
-    /**
-	 * 
-	 */
+   
 	private static final long serialVersionUID = 1L;
 	protected String pseudo;
     protected String password;
@@ -63,12 +62,15 @@ public abstract class Utilisateurs implements _Utilisateurs, Serializable {
         reactions.add(r);
     }
     
-    public void commenter(Contenu<Types> c) {
-    		c.getUser();
+    public void disliker(Contenu<Types> c){
+        Dislike r = new Dislike(this,c);
+        reactions.add(r);
     }
     
+    public void commenter(Contenu<Types> c, String s) {
+    		Commentaire com = new Commentaire(this,c,s);
+    		c.addComment(com);
+    }
     
-    
-    
-     
+         
 }

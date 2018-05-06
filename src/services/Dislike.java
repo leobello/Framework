@@ -5,10 +5,25 @@
  */
 package services;
 
+import contenu.Contenu;
+import contenu.Types;
+import users._Utilisateurs;
+
 /**
  *
  * @author near
  */
-public class Dislike {
-    
+public class Dislike extends Reactions implements _Reactions{
+
+	public Dislike(_Utilisateurs user, Contenu<Types> c){
+        this.c = c;
+        this.user = user;
+        
+    }
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 }

@@ -12,7 +12,7 @@ import contenu.*;
 /**
  *
  * @author near
- */
+ */	
 public class Gnaouas {
 
     /**
@@ -21,7 +21,6 @@ public class Gnaouas {
     public static void main(String[] args) {
         // TODO code application logic here
 
-        Admin leo = new Admin("leo","");
         User mouataz = new User("mouataz",22);
         User amine = new User("amine",22);
         amine.friendReq(mouataz);
@@ -29,10 +28,7 @@ public class Gnaouas {
         c.like(amine);
         System.out.println("---- "+amine.getFriendReq(0).getName());
         c.whoLike();
-        
-        
-        
-        
+              
       
         
     } 
