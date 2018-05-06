@@ -63,6 +63,11 @@ public abstract class Utilisateurs implements _Utilisateurs, Serializable {
         reactions.add(r);
     }
     
+    public void disliker(Contenu<Types> c){
+        Dislike r = new Dislike(this,c);
+        reactions.add(r);
+    }
+    
     public void commenter(Contenu<Types> c) {
     		c.getUser();
     }

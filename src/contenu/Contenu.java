@@ -56,13 +56,16 @@ public class Contenu<T extends Types>{
     		likes.add(user);    		
     }
     
-    public void unLike(_Utilisateurs user){
-        likes.remove(user);
+ 
+	public void unLike(_Utilisateurs user){  	
+    		likes.remove(user);
     }
     
-    public void dislike(_Utilisateurs user){
+    @SuppressWarnings("unchecked")
+	public void dislike(_Utilisateurs user){
+    		Utilisateurs user2 = (Utilisateurs)user;
+		user2.disliker((Contenu<Types>)this);    	
         dislikes.add(user);
-        System.out.println("la "+this.contenu.name.toString()+" de "+this.owner.getName()+" been disliked by :"+user.getName());
     }
     
     public void unDislike(_Utilisateurs user){
@@ -93,6 +96,7 @@ public class Contenu<T extends Types>{
         return this.commentaires;
     }
     
+    
     public String getType() { return this.contenu.getType(); }
     
     public _Partage getPartage() { return this.partage;}
@@ -103,6 +107,13 @@ public class Contenu<T extends Types>{
     			System.out.println(user.getName());
     		}
     }
+    
+    public void whoDislike() {
+		for(_Utilisateurs user : this.dislikes) {
+			System.out.println(user.getName());
+		}
+    }
+    
     
     
     
