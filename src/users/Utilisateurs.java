@@ -30,6 +30,15 @@ public abstract class Utilisateurs implements _Utilisateurs, Serializable {
     protected ArrayList<_Utilisateurs> followed;
     protected ArrayList<_Utilisateurs> followby;  
     protected boolean admin;
+    
+    
+    public Utilisateurs() {
+    		this.reactions = new ArrayList<_Reactions>();
+    		this.partagePub = new ArrayList<_Partage>();
+    		this.friends = new ArrayList<_Utilisateurs>();
+    		this.followed = new ArrayList<_Utilisateurs>();
+    		this.followby= new ArrayList<_Utilisateurs>();  		
+    }
         
     public String getName(){return this.pseudo;}
     public String getPassword(){return this.password;}

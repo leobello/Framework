@@ -13,14 +13,10 @@ import users._Utilisateurs;
  */
 public class Like extends Reactions implements _Reactions {
     
-	protected Contenu<Types> c;
-    protected _Utilisateurs user;
-    
+	
     public Like(_Utilisateurs user,Contenu<Types> c){
         this.c = c;
-        this.c.like(user);
         this.user = user;
-        super.name = this.getClass().toString();
         
     }
 
