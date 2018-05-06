@@ -8,7 +8,8 @@ package contenu;
 import java.util.ArrayList;
 
 import services._Partage;
-import users._Utilisateurs;
+import users.*;
+
 
 /**
  *
@@ -25,11 +26,19 @@ public class Contenu<T extends Types>{
     
     public Contenu(T c) {
 		this.contenu = c;
+		this.likes = new ArrayList<_Utilisateurs>();
+		this.dislikes = new ArrayList<_Utilisateurs>();
+		this.commentaires = new ArrayList<Commentaire>();
+		
 	}
 
 	public Contenu(T c, _Utilisateurs user) {
 		this.contenu = c;
 		this.owner = user;
+		this.likes = new ArrayList<_Utilisateurs>();
+		this.dislikes = new ArrayList<_Utilisateurs>();
+		this.commentaires = new ArrayList<Commentaire>();
+		
 	}
 	
 	public void setUser(_Utilisateurs user) { this.owner = user; }
@@ -40,8 +49,11 @@ public class Contenu<T extends Types>{
     
 
     
-    public void like(_Utilisateurs user){
-        likes.add(user);        
+    @SuppressWarnings("unchecked")
+	public void like(_Utilisateurs user){
+    		Utilisateurs user2 = (Utilisateurs)user;
+    		user2.liker((Contenu<Types>)this);
+    		likes.add(user);    		
     }
     
     public void unLike(_Utilisateurs user){
@@ -85,5 +97,13 @@ public class Contenu<T extends Types>{
     
     public _Partage getPartage() { return this.partage;}
     public void setPartage(_Partage p) { this.partage = p; }
+    
+    public void whoLike() {
+    		for(_Utilisateurs user : this.likes) {
+    			System.out.println(user.getName());
+    		}
+    }
+    
+    
     
 }

@@ -30,6 +30,15 @@ public abstract class Utilisateurs implements _Utilisateurs, Serializable {
     protected ArrayList<_Utilisateurs> followed;
     protected ArrayList<_Utilisateurs> followby;  
     protected boolean admin;
+    
+    
+    public Utilisateurs() {
+    		this.reactions = new ArrayList<_Reactions>();
+    		this.partagePub = new ArrayList<_Partage>();
+    		this.friends = new ArrayList<_Utilisateurs>();
+    		this.followed = new ArrayList<_Utilisateurs>();
+    		this.followby= new ArrayList<_Utilisateurs>();  		
+    }
         
     public String getName(){return this.pseudo;}
     public String getPassword(){return this.password;}
@@ -43,12 +52,12 @@ public abstract class Utilisateurs implements _Utilisateurs, Serializable {
     		Public partage = new Public(this);
     		partagePub.add(partage);    	
     }
+    
     public void publierPriv(Contenu<Types> c){
 		Privee partage = new Privee(this);
 		partagePriv.add(partage);    	
     }
-    
-    
+        
     public void liker(Contenu<Types> c){
         Like r = new Like(this,c);
         reactions.add(r);
@@ -57,6 +66,7 @@ public abstract class Utilisateurs implements _Utilisateurs, Serializable {
     public void commenter(Contenu<Types> c) {
     		c.getUser();
     }
+    
     
     
     

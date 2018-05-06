@@ -22,8 +22,10 @@ public class User  extends Utilisateurs  {
 	private static final long serialVersionUID = 1L;
 	
     public User(String pseudo, int age){
-    	this.pseudo = pseudo;
-    	this.age = age;
+    		super();
+    		this.pseudo = pseudo;
+    		this.age = age;
+    		this.friendrq = new ArrayList<_Utilisateurs>(); 
     }
     
     public User(String pseudo, String password, int age){
@@ -33,16 +35,11 @@ public class User  extends Utilisateurs  {
         super.admin = false;
     }
     // user ne peut demander un amis qu'un autre user
-    public void friendReq(Utilisateurs user){
-    	try{
-    		User user2 = (User)user;
-            this.friendrq.add(user2);
-            System.out.println(user2.pseudo+" added : "+this.pseudo);
-    		
-    	} catch (ClassCastException e) {
-    		 e.printStackTrace();
-    	}
-    	
+    public void friendReq(User user){
+    		if(user.getClass().getName() == this.getClass().getName()) {
+    			this.friendrq.add(user);
+    			System.out.println(this.getName()+" send friend request to "+user.getName());
+    		}   		
     }
     
     public _Utilisateurs getFriendReq(int i){return friendrq.get(i);}

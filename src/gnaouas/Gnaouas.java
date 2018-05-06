@@ -6,7 +6,7 @@
 package gnaouas;
 
 import users.*;
-
+import contenu.*;
 
 
 /**
@@ -21,11 +21,17 @@ public class Gnaouas {
     public static void main(String[] args) {
         // TODO code application logic here
 
-        Admin leo = new Admin("leo","toto");
+        Admin leo = new Admin("leo","");
         User mouataz = new User("mouataz",22);
         User amine = new User("amine",22);
-        amine.friendReq(leo);
-        mouataz.friendReq(leo);
+        amine.friendReq(mouataz);
+        Contenu<Photo> c = new Contenu<Photo>(new Photo("usr/bin"), mouataz);
+        c.like(amine);
+        System.out.println("---- "+amine.getFriendReq(0).getName());
+        c.whoLike();
+        
+        
+        
         
       
         
