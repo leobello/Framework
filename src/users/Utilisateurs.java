@@ -5,6 +5,7 @@
  */
 package users;
 
+import contenu.Commentaire;
 import contenu.Contenu;
 import contenu.Types;
 
@@ -68,12 +69,10 @@ public abstract class Utilisateurs implements _Utilisateurs, Serializable {
         reactions.add(r);
     }
     
-    public void commenter(Contenu<Types> c) {
-    		c.getUser();
+    public void commenter(Contenu<Types> c, String s) {
+    		Commentaire com = new Commentaire(this,c,s);
+    		c.addComment(com);
     }
     
-    
-    
-    
-     
+         
 }

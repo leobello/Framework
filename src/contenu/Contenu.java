@@ -114,6 +114,15 @@ public class Contenu<T extends Types>{
 		}
     }
     
+    public void addComment(Commentaire c) { this.commentaires.add(c); }
+    public void removeComment(Commentaire c) { this.commentaires.remove(c); }
+    
+    public void printComment() {
+    		for(Commentaire c : this.commentaires) {
+    			System.out.println(c.getComment());
+    		}
+    }
+    
     
     
     
