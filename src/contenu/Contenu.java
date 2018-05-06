@@ -47,7 +47,6 @@ public class Contenu<T extends Types>{
 	public Types getContenu() { return this.contenu; }
     public void setContenu(T type) { this.contenu = type; }
     
-
     
     @SuppressWarnings("unchecked")
 	public void like(_Utilisateurs user){

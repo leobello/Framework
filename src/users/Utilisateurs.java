@@ -18,9 +18,7 @@ import services.*;
  * @author near
  */
 public abstract class Utilisateurs implements _Utilisateurs, Serializable {
-    /**
-	 * 
-	 */
+   
 	private static final long serialVersionUID = 1L;
 	protected String pseudo;
     protected String password;
