@@ -1,22 +1,35 @@
 package bd;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import users.*;
 import java.util.Scanner;
-
 import stockage.*;
 
 
 public class Users implements _Users {
-	
+
+	private final String FileName = "Database.txt";
+	private final File dataFile;
 	private ArrayList<_Utilisateurs> inscrits;
 	public static int nbInscrit = 0;
 	
 	public Users(){
-		inscrits= new ArrayList<_Utilisateurs>() ;
+		
+		dataFile = new File(FileName);
+		if (dataFile.exists()) {
+			inscrits = lireBDFile();
+		}
+		else{
+			inscrits= new ArrayList<_Utilisateurs>();
+
+		}
 	}
+
+				
+		
 	
 	
 	public void inscrire() {
@@ -58,7 +71,8 @@ public class Users implements _Users {
 				inscrits.add(new User(login,mdp,age));
 				
 		}
-				
+		
+		sc.close();
 		nbInscrit++;
 		try {
 			enregistrerBD();
@@ -76,18 +90,21 @@ public class Users implements _Users {
 		return nbInscrit;
 	}
 	
+	public String getFileName(){
+		return FileName;
+	}
 	public void enregistrerBD() throws FileNotFoundException, IOException{
-		Serialization sz = new Serialization("DataBase.txt",this.inscrits);
+		 new Serialization(dataFile,this.inscrits);
 	}
 	
-	public void lireBDFile(){
-		
+	public ArrayList<_Utilisateurs> lireBDFile(){		
 		try {
-			Deserialization dsz = new Deserialization("DataBase.txt");
-			inscrits = (ArrayList<_Utilisateurs>) dsz.ObjectLu();
+			Deserialization dsz = new Deserialization(dataFile);
+			 return  (ArrayList<_Utilisateurs>) dsz.ObjectLu();
 		} catch (ClassNotFoundException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		}		
 	}
 	

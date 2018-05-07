@@ -7,8 +7,8 @@ public class Deserialization implements Serializable {
 	public File f;
 	public Object ReadedObject;
 	
-		public Deserialization(String fichier) throws FileNotFoundException, IOException, ClassNotFoundException{
-			this.f= new File (fichier);
+		public Deserialization(File fichier) throws FileNotFoundException, IOException, ClassNotFoundException{
+			this.f= fichier;
 			ObjectInputStream ois =  new ObjectInputStream(new FileInputStream(fichier)) ;
 			this.ReadedObject = ois.readObject();
 			ois.close();

@@ -17,7 +17,7 @@ public interface _Users {
 	
 	public void enregistrerBD() throws FileNotFoundException, IOException;
 
-	public void lireBDFile();
+	public ArrayList<_Utilisateurs> lireBDFile();
 	
 	public Utilisateurs getUser(String pseudo);
 	
