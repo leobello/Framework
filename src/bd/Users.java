@@ -17,18 +17,22 @@ public class Users implements _Users {
 	public static int nbInscrit = 0;
 	
 	public Users(){
-		
 		dataFile = new File(FileName);
-		if (dataFile.exists()) {
+		if (dataFile.length()>0) {
 			inscrits = lireBDFile();
+			nbInscrit=inscrits.size();
 		}
 		else{
 			inscrits= new ArrayList<_Utilisateurs>();
-
+			nbInscrit=0;
 		}
 	}
 
-				
+	/*public void suprimer(_Utilisateurs user){
+		if(user.getClass().getName() == "Admin"){
+			
+		}
+	}*/
 		
 	
 	
@@ -83,9 +87,25 @@ public class Users implements _Users {
 	}
 	
 	
-	public ArrayList<_Utilisateurs> getBD(){
+	public ArrayList<_Utilisateurs> getBD() throws NullPointerException{
 		return inscrits;
 	}
+	
+	
+	
+	public void afficher_Utilisateurs(){
+		
+		try{
+			ArrayList<_Utilisateurs> p = getBD();
+			for (_Utilisateurs us : p) {
+				System.out.println(us.getName());
+			}
+		} catch (NullPointerException e){
+			System.out.println("il n'y aucun utilisateur pour l'instant");
+		}
+	}
+	
+	
 	public int getnbInscrit(){
 		return nbInscrit;
 	}
