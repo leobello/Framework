@@ -7,6 +7,7 @@ package gnaouas;
 
 import users.*;
 import contenu.*;
+import services.Privee;
 
 
 /**
@@ -19,18 +20,30 @@ public class Gnaouas {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-
+        
         User mouataz = new User("mouataz",22);
         User amine = new User("amine",22);
-        amine.friendReq(mouataz);
-        Contenu<Photo> c = new Contenu<Photo>(new Photo("usr/bin"), mouataz);
-        c.like(amine);
-        System.out.println("---- "+amine.getFriendReq(0).getName());
-        c.whoLike();
-              
-      
+        User leo = new User("leo", 27);
+        User pablo = new User("pablo",21);
         
+        mouataz.friendReq(leo);
+        pablo.friendReq(leo);
+        leo.friendReq(amine);
+        amine.friendReq(mouataz);
+        amine.friendReq(leo);
+        
+        // test des friend request
+        System.out.println("______________________________");
+        leo.getAllFriendRqst();
+        leo.printFriend();
+        
+        
+        
+        // test sur le partage de contenu
+        Contenu<Photo> c = new Contenu<Photo>(new Photo("/usr/bin/a"), leo, new Privee());
+        Contenu<Photo> c2 = new Contenu<Photo>(new Photo("/usr/bin/b"), amine, new Privee());
+        
+                
     } 
     
 }

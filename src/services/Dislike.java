@@ -20,10 +20,6 @@ public class Dislike extends Reactions implements _Reactions{
         this.user = user;
         
     }
-	@Override
-	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 	
 }

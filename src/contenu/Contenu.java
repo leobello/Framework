@@ -6,6 +6,7 @@
 package contenu;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import services._Partage;
 import users.*;
@@ -17,28 +18,24 @@ import users.*;
  * @param <T>
  */
 public class Contenu<T extends Types>{
+	
     protected T contenu;
     protected _Utilisateurs owner;
     protected ArrayList<_Utilisateurs> likes;
     protected ArrayList<_Utilisateurs> dislikes;
     protected ArrayList<Commentaire> commentaires;
     protected _Partage partage;
+    protected Date date;
     
-    public Contenu(T c) {
-		this.contenu = c;
-		this.likes = new ArrayList<_Utilisateurs>();
-		this.dislikes = new ArrayList<_Utilisateurs>();
-		this.commentaires = new ArrayList<Commentaire>();
-		
-	}
-
-	public Contenu(T c, _Utilisateurs user) {
+    
+	public Contenu(T c, _Utilisateurs user, _Partage p) {
 		this.contenu = c;
 		this.owner = user;
 		this.likes = new ArrayList<_Utilisateurs>();
 		this.dislikes = new ArrayList<_Utilisateurs>();
 		this.commentaires = new ArrayList<Commentaire>();
-		
+		this.partage = p;
+		date = new Date();		
 	}
 	
 	public void setUser(_Utilisateurs user) { this.owner = user; }
@@ -46,15 +43,13 @@ public class Contenu<T extends Types>{
     
 	public Types getContenu() { return this.contenu; }
     public void setContenu(T type) { this.contenu = type; }
-    
-    
+        
     @SuppressWarnings("unchecked")
 	public void like(_Utilisateurs user){
     		Utilisateurs user2 = (Utilisateurs)user;
     		user2.liker((Contenu<Types>)this);
     		likes.add(user);    		
-    }
-    
+    }    
  
 	public void unLike(_Utilisateurs user){  	
     		likes.remove(user);
@@ -95,7 +90,6 @@ public class Contenu<T extends Types>{
         return this.commentaires;
     }
     
-    
     public String getType() { return this.contenu.getType(); }
     
     public _Partage getPartage() { return this.partage;}
@@ -121,6 +115,8 @@ public class Contenu<T extends Types>{
     			System.out.println(c.getComment());
     		}
     }
+    
+    
     
     
     
