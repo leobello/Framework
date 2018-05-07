@@ -5,9 +5,9 @@
  */
 package services;
 
-import contenu.Contenu;
-import contenu.Types;
+import contenu.*;
 import users._Utilisateurs;
+
 
 /**
  *
@@ -15,7 +15,7 @@ import users._Utilisateurs;
  */
 public class Dislike extends Reactions implements _Reactions{
 
-	public Dislike(_Utilisateurs user, Contenu<Types> c){
+	public Dislike(_Utilisateurs user, Contenu c){
         this.c = c;
         this.user = user;
         
