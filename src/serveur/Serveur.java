@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -41,7 +42,7 @@ public class Serveur extends UnicastRemoteObject implements _Serveur {
 		rmiRegistry = LocateRegistry.createRegistry(1099);
 		// Enregistrer l'objet créé dans le registre de noms en lui affectant un nom
 		String url = "rmi://152.77.82.60/Gnaouas";
-		rmiRegistry.rebind(url, this);
+		Naming.rebind(url, this);
 		System.out.println("Serveur est prêt");
 	}
 
