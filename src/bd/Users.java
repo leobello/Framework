@@ -1,25 +1,38 @@
 package bd;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
+import java.util.*;
 import users.*;
-import java.util.Scanner;
-
-import serveur.Actor;
-import serveur.Inscription;
+import serveur.*;
 import stockage.*;
 
 
-public class Users {
-	
+public class Users implements _Users {
+
+	private final String FileName = "Database.txt";
+	private final File dataFile;
 	private ArrayList<_Utilisateurs> inscrits;
 	public static int nbInscrit = 0;
 	public static int nbConnected=0;
 	public Users(){
-		inscrits= new ArrayList<_Utilisateurs>() ;
+		dataFile = new File(FileName);
+		if (dataFile.length()>0) {
+			inscrits = lireBDFile();
+			nbInscrit=inscrits.size();
+		}
+		else{
+			inscrits= new ArrayList<_Utilisateurs>();
+			nbInscrit=0;
+		}
 	}
+
+	/*public void suprimer(_Utilisateurs user){
+		if(user.getClass().getName() == "Admin"){
+			
+		}
+	}*/
+		
 	
 	
 	public void inscrire() {
@@ -61,7 +74,9 @@ public class Users {
 				inscrits.add(new User(login,mdp,age));
 				
 		}
-				
+		
+		sc.close();
+		nbInscrit++;
 		try {
 			enregistrerBD();
 		} catch (IOException e) {
@@ -71,22 +86,44 @@ public class Users {
 	}
 	
 	
-	public ArrayList<_Utilisateurs> getBD(){
+	public ArrayList<_Utilisateurs> getBD() throws NullPointerException{
 		return inscrits;
 	}
 	
-	public void enregistrerBD() throws FileNotFoundException, IOException{
-		Serialization sz = new Serialization("DataBase",this.inscrits);
+	
+	
+	public void afficher_Utilisateurs(){
+		
+		try{
+			ArrayList<_Utilisateurs> p = getBD();
+			for (_Utilisateurs us : p) {
+				System.out.println(us.getName());
+			}
+		} catch (NullPointerException e){
+			System.out.println("il n'y aucun utilisateur pour l'instant");
+		}
 	}
 	
-	public void lireBDFile(){
-		
+	
+	public int getnbInscrit(){
+		return nbInscrit;
+	}
+	
+	public String getFileName(){
+		return FileName;
+	}
+	public void enregistrerBD() throws FileNotFoundException, IOException{
+		 new Serialization(dataFile,this.inscrits);
+	}
+	
+	public ArrayList<_Utilisateurs> lireBDFile(){		
 		try {
-			Deserialization dsz = new Deserialization("DataBase");
-			inscrits = (ArrayList<_Utilisateurs>) dsz.ObjectLu();
+			Deserialization dsz = new Deserialization(dataFile);
+			 return  (ArrayList<_Utilisateurs>) dsz.ObjectLu();
 		} catch (ClassNotFoundException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		}		
 	}
 	
