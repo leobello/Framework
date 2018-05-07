@@ -38,6 +38,8 @@ public class Contenu{
 		date = new Date();		
 	}
 	
+	public Date getDate() {return this.date;}
+	
 	public void setUser(_Utilisateurs user) { this.owner = user; }
 	public _Utilisateurs getUser() { return this.owner; }
     

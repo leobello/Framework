@@ -83,16 +83,35 @@ public abstract class Utilisateurs implements _Utilisateurs, Serializable {
     
    /* fonction tri date et stat à faire  */
     
+   public void triTimeline(ArrayList<Contenu> list) {
+	   Contenu older;
+	   ArrayList<Contenu> timeline = new ArrayList<Contenu>();
+	   int i = 0;
+	   if(!list.isEmpty()) {
+		   older = list.get(i);
+		   for(i = 1 ; i < list.size(); i++) {
+			   if( older.getDate().compareTo(list.get(i).getDate()) < 0 ) {
+				   timeline.add(older);
+				   list.remove(older);
+			   }
+			   
+		   }
+	   }
+   }
+    
     public ArrayList<Contenu> getTimeline(){
     		ArrayList<Contenu> timeline = new ArrayList<Contenu>();
     		Utilisateurs u2 = null;
-    		for(_Utilisateurs u : this.friends)
+    		for(_Utilisateurs u : this.friends) {
     			u2 = (Utilisateurs)u;
     			for(Contenu c : u2.getPartages()) {
     				timeline.add(c);
     			}
+    		}	
     		return timeline;
     }
+    
+    
     
     
     
