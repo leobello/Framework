@@ -59,7 +59,10 @@ public class User  extends Utilisateurs  {
     				c = sc.nextLine();
     			}while(!c.equals("yes") && !c.equals("no"));
     			if(c.equals("yes")) {
+    				Utilisateurs u2;
+    				u2 = (Utilisateurs)this.friendrq.get(i);
     				this.beFriend(this.friendrq.get(i));
+    				u2.beFriend(this);
     			}
     			this.friendrq.remove(i);
     		}
@@ -68,13 +71,11 @@ public class User  extends Utilisateurs  {
     		}
  
     }
+    
     public void getAllFriendRqst() {
     		while(!this.friendrq.isEmpty()) {
     			this.getFriendReqst();
     		}
-    }
-    
-    
-  
+    }  
        
 }

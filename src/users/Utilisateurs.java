@@ -5,9 +5,8 @@
  */
 package users;
 
-import contenu.Commentaire;
-import contenu.Contenu;
-import contenu.Types;
+import contenu.*;
+
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -23,7 +22,7 @@ public abstract class Utilisateurs implements _Utilisateurs, Serializable {
 	protected String pseudo;
     protected String password;
     protected ArrayList<_Reactions> reactions;
-    protected ArrayList<Contenu<Types>> partages;
+    protected ArrayList<Contenu> partages;
     protected ArrayList<_Utilisateurs> friends;
     protected ArrayList<_Utilisateurs> followed;
     protected ArrayList<_Utilisateurs> followby;  
@@ -32,7 +31,7 @@ public abstract class Utilisateurs implements _Utilisateurs, Serializable {
     
     public Utilisateurs() {
     		this.reactions = new ArrayList<_Reactions>();
-    		this.partages = new ArrayList<Contenu<Types>>();
+    		this.partages = new ArrayList<Contenu>();
     		this.friends = new ArrayList<_Utilisateurs>();
     		this.followed = new ArrayList<_Utilisateurs>();
     		this.followby= new ArrayList<_Utilisateurs>();  		
@@ -43,30 +42,31 @@ public abstract class Utilisateurs implements _Utilisateurs, Serializable {
         
     public String getName(){return this.pseudo;}
     public String getPassword(){return this.password;}
+   
     
     public void setName(String name){
         this.pseudo = name;
     }
     
-    public ArrayList<Contenu<Types>> getPartages(){ return this.partages; }
+    public ArrayList<Contenu> getPartages(){ return this.partages; }
     
 
-    public void publier(Contenu<Types> c){
+    public void publier(Contenu c){
     		this.partages.add(c);    	
     }
     
    
-    public void liker(Contenu<Types> c){
+    public void liker(Contenu c){
         Like r = new Like(this,c);
         reactions.add(r);
     }
     
-    public void disliker(Contenu<Types> c){
+    public void disliker(Contenu c){
         Dislike r = new Dislike(this,c);
         reactions.add(r);
     }
     
-    public void commenter(Contenu<Types> c, String s) {
+    public void commenter(Contenu c, String s) {
     		Commentaire com = new Commentaire(this,c,s);
     		c.addComment(com);
     }
@@ -80,5 +80,24 @@ public abstract class Utilisateurs implements _Utilisateurs, Serializable {
     			System.out.println(u.getName());
     		}
     }
+    
+   /* fonction tri date et stat à faire  */
+    
+    public ArrayList<Contenu> getTimeline(){
+    		ArrayList<Contenu> timeline = new ArrayList<Contenu>();
+    		Utilisateurs u2 = null;
+    		for(_Utilisateurs u : this.friends)
+    			u2 = (Utilisateurs)u;
+    			for(Contenu c : u2.getPartages()) {
+    				timeline.add(c);
+    			}
+    		return timeline;
+    }
+    
+    
+    
+    
+    
+    
          
 }

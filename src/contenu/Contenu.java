@@ -17,9 +17,9 @@ import users.*;
  * @author near
  * @param <T>
  */
-public class Contenu<T extends Types>{
+public class Contenu{
 	
-    protected T contenu;
+    protected Types contenu;
     protected _Utilisateurs owner;
     protected ArrayList<_Utilisateurs> likes;
     protected ArrayList<_Utilisateurs> dislikes;
@@ -28,7 +28,7 @@ public class Contenu<T extends Types>{
     protected Date date;
     
     
-	public Contenu(T c, _Utilisateurs user, _Partage p) {
+	public Contenu(Types c, _Utilisateurs user, _Partage p) {
 		this.contenu = c;
 		this.owner = user;
 		this.likes = new ArrayList<_Utilisateurs>();
@@ -42,12 +42,12 @@ public class Contenu<T extends Types>{
 	public _Utilisateurs getUser() { return this.owner; }
     
 	public Types getContenu() { return this.contenu; }
-    public void setContenu(T type) { this.contenu = type; }
+    public void setContenu(Types type) { this.contenu = type; }
         
-    @SuppressWarnings("unchecked")
+  
 	public void like(_Utilisateurs user){
     		Utilisateurs user2 = (Utilisateurs)user;
-    		user2.liker((Contenu<Types>)this);
+    		user2.liker((Contenu)this);
     		likes.add(user);    		
     }    
  
@@ -55,10 +55,10 @@ public class Contenu<T extends Types>{
     		likes.remove(user);
     }
     
-    @SuppressWarnings("unchecked")
+
 	public void dislike(_Utilisateurs user){
     		Utilisateurs user2 = (Utilisateurs)user;
-		user2.disliker((Contenu<Types>)this);    	
+		user2.disliker((Contenu)this);    	
         dislikes.add(user);
     }
     
