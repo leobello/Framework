@@ -1,60 +1,78 @@
 package serveur;
 
-
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
-import client._Client;
+import input.RMIInputStream;
+import input.RMIInputStreamImpl;
+import output.RMIOutputStream;
+import output.RMIOutputStreamImpl;
 
-
+/**
+ * class qui implements l'interface _Serveur
+ * @author Zakaria
+ *
+ */
 public class Serveur extends UnicastRemoteObject implements _Serveur {
 
-	
 	private static final long serialVersionUID = 1L;
-	// file : le nom du fichier
-	private String file="";
-	
+	private Registry rmiRegistry;
+
 	protected Serveur() throws RemoteException {
 		super();
-		
+
 	}
 
 	/**
-	 * Affecter le nom du ficher
-	 * @param f : nom du fichier 
+	 * Démarrer le serveur
+	 * 
+	 * @throws Exception
 	 */
-	public void setFile(String f){
-		file=f;
-	}
-	
-	/**
-	 * Pour que le client se connecte au serveur 
-	 * @param c : le client qui va se connecter au serveur
-	 */
-	public boolean login(_Client c) throws RemoteException{
-	
-		 try{
-			 
-			 File f1=new File(file);			 
-			 
-			 FileInputStream in=new FileInputStream(f1);			 				 
-			 byte [] data=new byte[1024*1024];					
-			 int len=in.read(data);
-			// envoyer le fichier au client
-			 while(len>0){
-				 c.sendData(f1.getName(), data, len);	 
-				 len=in.read(data);				 
-			 }
-			 
-		 }catch(Exception e){
-			 e.printStackTrace();
-			 
-		 }
-		return true;
-		
+	public void start() throws Exception {
+		// Créer le registr avec le port 1099
+		rmiRegistry = LocateRegistry.createRegistry(1099);
+		// Enregistrer l'objet créé dans le registre de noms en lui affectant un nom
+		rmiRegistry.bind("Gnaouas", this);
+		System.out.println("Serveur est prêt");
 	}
 
+	/**
+	 * Arrêter le serveur
+	 * 
+	 * @throws Exception
+	 */
+
+	public void stop() throws Exception {
+		// Détacher l'objet créé en utilisant le nom
+		rmiRegistry.unbind("Gnaouas");
+		// Enlever l'objet créé (Serveur)
+		unexportObject(this, true);
+		// Enlever le Registre
+		unexportObject(rmiRegistry, true);
+		System.out.println("Fin du serveur");
+	}
+
+	
+	/* (non-Javadoc)
+	 * @see serveur._Serveur#getOutputStream(java.io.File)
+	 */
+	public OutputStream getOutputStream(File f) throws IOException {
+		return new RMIOutputStream(new RMIOutputStreamImpl(new FileOutputStream(f)));
+	}
+
+	/* (non-Javadoc)
+	 * @see serveur._Serveur#getInputStream(java.io.File)
+	 */
+	public InputStream getInputStream(File f) throws IOException {
+		return new RMIInputStream(new RMIInputStreamImpl(new FileInputStream(f)));
+	}
 
 }
