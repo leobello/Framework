@@ -19,11 +19,6 @@ public class Like extends Reactions implements _Reactions {
         this.user = user;
         
     }
-
-    @Override
-    public String getName() {
-        return super.name;
-        
-    }
+    
     
 }

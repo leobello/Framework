@@ -20,5 +20,6 @@ public abstract class Reactions implements _Reactions {
     
     public void who() { System.out.println(this.name); }
     public Contenu<Types> what() { return this.c; }
+    public String getName() { return this.name; }
     
 }

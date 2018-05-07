@@ -23,8 +23,7 @@ public abstract class Utilisateurs implements _Utilisateurs, Serializable {
 	protected String pseudo;
     protected String password;
     protected ArrayList<_Reactions> reactions;
-    protected ArrayList<_Partage> partagePub;
-    protected ArrayList<_Partage> partagePriv;
+    protected ArrayList<Contenu<Types>> partages;
     protected ArrayList<_Utilisateurs> friends;
     protected ArrayList<_Utilisateurs> followed;
     protected ArrayList<_Utilisateurs> followby;  
@@ -33,11 +32,14 @@ public abstract class Utilisateurs implements _Utilisateurs, Serializable {
     
     public Utilisateurs() {
     		this.reactions = new ArrayList<_Reactions>();
-    		this.partagePub = new ArrayList<_Partage>();
+    		this.partages = new ArrayList<Contenu<Types>>();
     		this.friends = new ArrayList<_Utilisateurs>();
     		this.followed = new ArrayList<_Utilisateurs>();
     		this.followby= new ArrayList<_Utilisateurs>();  		
     }
+    
+    
+    
         
     public String getName(){return this.pseudo;}
     public String getPassword(){return this.password;}
@@ -46,17 +48,14 @@ public abstract class Utilisateurs implements _Utilisateurs, Serializable {
         this.pseudo = name;
     }
     
+    public ArrayList<Contenu<Types>> getPartages(){ return this.partages; }
+    
 
-    public void publierPub(Contenu<Types> c){
-    		Public partage = new Public(this);
-    		partagePub.add(partage);    	
+    public void publier(Contenu<Types> c){
+    		this.partages.add(c);    	
     }
     
-    public void publierPriv(Contenu<Types> c){
-		Privee partage = new Privee(this);
-		partagePriv.add(partage);    	
-    }
-        
+   
     public void liker(Contenu<Types> c){
         Like r = new Like(this,c);
         reactions.add(r);
@@ -72,5 +71,14 @@ public abstract class Utilisateurs implements _Utilisateurs, Serializable {
     		c.addComment(com);
     }
     
+    public void beFriend(_Utilisateurs u) {
+    		this.friends.add(u);
+    }
+    
+    public void printFriend() {
+    		for(_Utilisateurs u : this.friends) {
+    			System.out.println(u.getName());
+    		}
+    }
          
 }

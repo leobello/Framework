@@ -13,5 +13,10 @@ public interface _Utilisateurs {
     public String getName();
     public String getPassword();
     public void setName(String name);
+    //public void liker();
+    //public void disliker();
+    //public void commenter();
+    //public void getContenu();
+    //public void publier();
     
 }
