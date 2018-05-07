@@ -1,11 +1,10 @@
 package bd;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.ArrayList;
+import java.io.*;
+import java.rmi.RemoteException;
+import java.util.*;
 import users.*;
-import java.util.Scanner;
+import serveur.*;
 import stockage.*;
 
 
@@ -15,7 +14,7 @@ public class Users implements _Users {
 	private final File dataFile;
 	private ArrayList<_Utilisateurs> inscrits;
 	public static int nbInscrit = 0;
-	
+	public static int nbConnected=0;
 	public Users(){
 		dataFile = new File(FileName);
 		if (dataFile.length()>0) {
@@ -138,6 +137,39 @@ public class Users implements _Users {
 		}
 		return null;	
 	}
-	
-
+	public void connectUser() throws RemoteException {
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Entrer votre login : ");
+		String login =sc.nextLine();
+		System.out.println("Entrer votre mdp");
+		String mdp=sc.nextLine();
+		try {
+			while(!checkUser(login,mdp)) {
+				System.out.println("Entrer votre login : ");
+				login =sc.nextLine();
+				System.out.println("Entrer votre mdp");
+				mdp=sc.nextLine();
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public boolean checkUser(String login, String mdp) throws RemoteException {
+		lireBDFile();
+		ArrayList<_Utilisateurs> list=getBD();
+		for(_Utilisateurs user:list) {
+			if(user.getName().equals(login) && user.getPassword().equals(mdp)) {
+				System.out.println("connected");
+				nbConnected++;
+				System.out.println(nbConnected);
+				System.out.println("Bienvenue "+login);
+				return true;
+			}else {
+				System.out.println("Login or password not correct");
+				return false ;
+			}
+		}
+		return false;
+	}
 }

@@ -5,14 +5,11 @@
  */
 package users;
 
+import contenu.Commentaire;
 import contenu.Contenu;
 import contenu.Types;
 
 import java.io.Serializable;
-
-
-
-
 import java.util.ArrayList;
 import services.*;
 
@@ -21,17 +18,26 @@ import services.*;
  * @author near
  */
 public abstract class Utilisateurs implements _Utilisateurs, Serializable {
-    protected String pseudo;
+   
+	private static final long serialVersionUID = 1L;
+	protected String pseudo;
     protected String password;
     protected ArrayList<_Reactions> reactions;
     protected ArrayList<_Partage> partagePub;
     protected ArrayList<_Partage> partagePriv;
     protected ArrayList<_Utilisateurs> friends;
     protected ArrayList<_Utilisateurs> followed;
-    protected ArrayList<_Utilisateurs> followby;
-    protected ArrayList<_Utilisateurs> friendrq=new ArrayList<_Utilisateurs>();
-    
+    protected ArrayList<_Utilisateurs> followby;  
     protected boolean admin;
+    
+    
+    public Utilisateurs() {
+    		this.reactions = new ArrayList<_Reactions>();
+    		this.partagePub = new ArrayList<_Partage>();
+    		this.friends = new ArrayList<_Utilisateurs>();
+    		this.followed = new ArrayList<_Utilisateurs>();
+    		this.followby= new ArrayList<_Utilisateurs>();  		
+    }
         
     public String getName(){return this.pseudo;}
     public String getPassword(){return this.password;}
@@ -40,33 +46,31 @@ public abstract class Utilisateurs implements _Utilisateurs, Serializable {
         this.pseudo = name;
     }
     
-    public void friendReq(Utilisateurs user){
-        user.friendrq.add(this);
-        System.out.println(user.pseudo+" added : "+this.pseudo);
-    }
-    
-    public _Utilisateurs getFriendReq(int i){return friendrq.get(i);}
-    
+
     public void publierPub(Contenu<Types> c){
     		Public partage = new Public(this);
     		partagePub.add(partage);    	
     }
+    
     public void publierPriv(Contenu<Types> c){
 		Privee partage = new Privee(this);
 		partagePriv.add(partage);    	
     }
-    
-    
+        
     public void liker(Contenu<Types> c){
         Like r = new Like(this,c);
         reactions.add(r);
     }
     
-    public void commenter(Contenu<Types> c) {
-    		c.getUser();
+    public void disliker(Contenu<Types> c){
+        Dislike r = new Dislike(this,c);
+        reactions.add(r);
     }
     
+    public void commenter(Contenu<Types> c, String s) {
+    		Commentaire com = new Commentaire(this,c,s);
+    		c.addComment(com);
+    }
     
-    
-     
+         
 }

@@ -5,14 +5,28 @@
  */
 package users;
 
-import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  *
  * @author near
  */
 public class User  extends Utilisateurs  {
-	int age;
+
+    protected ArrayList<_Utilisateurs> friendrq;
+    int age;
+
+
+    
+
+	private static final long serialVersionUID = 1L;
+	
+    public User(String pseudo, int age){
+    		super();
+    		this.pseudo = pseudo;
+    		this.age = age;
+    		this.friendrq = new ArrayList<_Utilisateurs>(); 
+    }
     
     public User(String pseudo, String password, int age){
         super.pseudo = pseudo;
@@ -20,6 +34,16 @@ public class User  extends Utilisateurs  {
         this.age = age;
         super.admin = false;
     }
+    // user ne peut demander un amis qu'un autre user
+    public void friendReq(User user){
+    		if(user.getClass().getName() == this.getClass().getName()) {
+    			this.friendrq.add(user);
+    			System.out.println(this.getName()+" send friend request to "+user.getName());
+    		}   		
+    }
+    
+    public _Utilisateurs getFriendReq(int i){return friendrq.get(i);}
+    
     
     
 }

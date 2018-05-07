@@ -5,22 +5,24 @@
  */
 package services;
 
+import users._Utilisateurs;
 
 /**
  *
  * @author near
  */
 public class CtrlUser implements _Administration {
-    private String password;
+    
+    _Utilisateurs user;
     
     @Override
     public void setPassword(String password) {
-        this.password = password;
+        
     }
 
     @Override
     public String getPassword() {
-       return this.password;
+    		return "";
     }
 
 	

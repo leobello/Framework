@@ -4,15 +4,15 @@
  * and open the template in the editor.
  */
 package gnaouas;
-import contenu.*;
 
-import users.User;
+import users.*;
+import contenu.*;
 
 
 /**
  *
  * @author near
- */
+ */	
 public class Gnaouas {
 
     /**
@@ -20,12 +20,16 @@ public class Gnaouas {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        User leo = new User("leo","123456789",27);
-        User mouataz = new User("mouataz","12456789",22);
-        // 
-        leo.friendReq(mouataz);
-        Contenu<Photo> photo = new Contenu<Photo>(new Photo("/home/test.jpg"),leo);
-        photo.dislike(mouataz);
+
+        User mouataz = new User("mouataz",22);
+        User amine = new User("amine",22);
+        amine.friendReq(mouataz);
+        Contenu<Photo> c = new Contenu<Photo>(new Photo("usr/bin"), mouataz);
+        c.like(amine);
+        System.out.println("---- "+amine.getFriendReq(0).getName());
+        c.whoLike();
+              
+      
         
     } 
     
