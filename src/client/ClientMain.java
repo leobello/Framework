@@ -3,6 +3,7 @@ package client;
 import java.io.File;
 import java.net.InetAddress;
 import java.rmi.Naming;
+import java.util.Scanner;
 
 import serveur._Serveur;
 
@@ -14,7 +15,10 @@ public class ClientMain {
 	
 	public static void main(String[] args) throws Exception {
 
-		String url = "rmi://"+ InetAddress.getLocalHost().getHostAddress() +"/Gnaouas";
+		System.out.println("Entrez l'adresse ip du serveur");
+		String hostname = new Scanner(System.in).nextLine();
+		
+		String url = "rmi://"+ hostname +"/Gnaouas";
 
 		_Serveur Gnaouas = (_Serveur) Naming.lookup(url);
 
