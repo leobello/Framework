@@ -83,7 +83,7 @@ public abstract class Utilisateurs implements _Utilisateurs, Serializable {
     
    /* fonction tri date et stat à faire  */
     
-   public void triTimeline(ArrayList<Contenu> list) {
+    public void triTimeline(ArrayList<Contenu> list) {
 	   Contenu older;
 	   ArrayList<Contenu> timeline = new ArrayList<Contenu>();
 	   int i = 0;
@@ -97,7 +97,7 @@ public abstract class Utilisateurs implements _Utilisateurs, Serializable {
 			   
 		   }
 	   }
-   }
+    }
     
     public ArrayList<Contenu> getTimeline(){
     		ArrayList<Contenu> timeline = new ArrayList<Contenu>();
