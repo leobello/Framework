@@ -13,6 +13,9 @@ public class Test {
 		
 		Users baseDeDonnees = new Users();
 		
+		baseDeDonnees.inscrire();
+		
+		baseDeDonnees.getUser("amalm");
 		
 	}
 }

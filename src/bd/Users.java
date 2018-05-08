@@ -4,7 +4,6 @@ import java.io.*;
 import java.rmi.RemoteException;
 import java.util.*;
 import users.*;
-import serveur.*;
 import stockage.*;
 
 
@@ -20,6 +19,7 @@ public class Users implements _Users {
 		if (dataFile.length()>0) {
 			inscrits = lireBDFile();
 			nbInscrit=inscrits.size();
+			System.out.println(nbInscrit);
 		}
 		else{
 			inscrits= new ArrayList<_Utilisateurs>();
@@ -79,6 +79,7 @@ public class Users implements _Users {
 		nbInscrit++;
 		try {
 			enregistrerBD();
+			System.out.println("done");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -131,7 +132,6 @@ public class Users implements _Users {
 		for (_Utilisateurs p : inscrits) {
 			System.out.println(p.getName());
 			if (p.getName().equals(pseudo)) {
-				System.out.println("done");
 				return (Utilisateurs) p;
 			}
 		}
