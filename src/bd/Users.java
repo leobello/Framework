@@ -2,20 +2,21 @@ package bd;
 
 import java.io.*;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.*;
 import users.*;
 import serveur.*;
 import stockage.*;
 
 
-public class Users implements _Users {
+public class Users extends UnicastRemoteObject implements _Users {
 
 	private final String FileName = "Database.txt";
 	private final File dataFile;
 	private ArrayList<_Utilisateurs> inscrits;
 	public static int nbInscrit = 0;
 	public static int nbConnected=0;
-	public Users(){
+	public Users() throws RemoteException{
 		dataFile = new File(FileName);
 		if (dataFile.length()>0) {
 			inscrits = lireBDFile();
@@ -35,7 +36,7 @@ public class Users implements _Users {
 		
 	
 	
-	public void inscrire() {
+	public void inscrire() throws RemoteException{
 		Scanner sc=new Scanner(System.in);
 		System.out.println("Entrer un login : ");
 		String login =sc.nextLine();
@@ -86,13 +87,13 @@ public class Users implements _Users {
 	}
 	
 	
-	public ArrayList<_Utilisateurs> getBD() throws NullPointerException{
+	public ArrayList<_Utilisateurs> getBD() throws NullPointerException ,RemoteException{
 		return inscrits;
 	}
 	
 	
 	
-	public void afficher_Utilisateurs(){
+	public void afficher_Utilisateurs() throws RemoteException{
 		
 		try{
 			ArrayList<_Utilisateurs> p = getBD();
@@ -112,11 +113,11 @@ public class Users implements _Users {
 	public String getFileName(){
 		return FileName;
 	}
-	public void enregistrerBD() throws FileNotFoundException, IOException{
+	public void enregistrerBD() throws FileNotFoundException, IOException,RemoteException{
 		 new Serialization(dataFile,this.inscrits);
 	}
 	
-	public ArrayList<_Utilisateurs> lireBDFile(){		
+	public ArrayList<_Utilisateurs> lireBDFile() throws RemoteException{		
 		try {
 			Deserialization dsz = new Deserialization(dataFile);
 			 return  (ArrayList<_Utilisateurs>) dsz.ObjectLu();
@@ -127,7 +128,7 @@ public class Users implements _Users {
 		}		
 	}
 	
-	public Utilisateurs getUser(String pseudo){
+	public Utilisateurs getUser(String pseudo) throws RemoteException{
 		for (_Utilisateurs p : inscrits) {
 			System.out.println(p.getName());
 			if (p.getName().equals(pseudo)) {
