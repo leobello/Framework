@@ -12,6 +12,7 @@ import stockage.*;
 
 public class Users extends UnicastRemoteObject implements _Users {
 
+	static final long serialVersionUID = 1L;
 	private final String FileName = "Database.txt";
 	private final File dataFile;
 	private ArrayList<_Utilisateurs> inscrits;
@@ -29,18 +30,36 @@ public class Users extends UnicastRemoteObject implements _Users {
 		}
 	}
 
-	/*public void suprimer(_Utilisateurs user){
+	public void suprimerBD(_Utilisateurs user){
 		if(user.getClass().getName() == "Admin"){
-			
+			dataFile.delete();
+			inscrits.clear();
+			nbInscrit=0;
+			nbConnected=0;
 		}
-	}*/
+	}
 		
+	
+	public boolean UserNameAlreadyExist(String userName) {
+		for (_Utilisateurs user : inscrits) {
+			if ( userName == user.getName()) {
+				 return true;
+			}
+		}
+		return false;
+	}
+	
+	
 	
 	
 	public void inscrire() throws RemoteException{
 		Scanner sc=new Scanner(System.in);
 		System.out.println("Entrer un login : ");
 		String login =sc.nextLine();
+		while ( UserNameAlreadyExist(login)) {
+			System.out.println("Le login que vous venez de rentrez existe déja, veillez en entrez un autre");
+			login =sc.nextLine();
+		}
 		System.out.println("Entrer un mot de passe : ");
 		String mdp=sc.nextLine();
 		System.out.println("Entrer encore une fois le mot de passe pour la vÃ©rification : ");
