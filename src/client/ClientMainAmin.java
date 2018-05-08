@@ -3,8 +3,7 @@ package client;
 import java.rmi.Naming;
 import java.util.Scanner;
 
-import serveur._Actor;
-
+import bd._Users;
 public class ClientMainAmin {
 	
 	public static void main(String[] args) {
@@ -17,11 +16,12 @@ public class ClientMainAmin {
 			String url = "rmi://"+hostname+"/Gnaouas";
 		    // on vérifie que l'objet retourné est bien une instance de cette interface.
 			//_Serveur server=(_Serveur)Naming.lookup(url);
-			_Actor server=(_Actor)Naming.lookup(url);
-			System.out.println("Client : "+ c.getName() + " est connecté ");
+			_Users server=(_Users)Naming.lookup(url);
+			//System.out.println("Client : "+ c.getName() + " est connecté ");
 			//le client se connecte et serveur et il va recevoir le fichier 
 			//server.login(c);			
 			server.connectUser();
+			System.out.println(server.getnbInscrit());
 			System.out.println("Fin du client");
 		}catch(Exception e){
 			e.printStackTrace();

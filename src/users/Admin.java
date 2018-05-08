@@ -9,17 +9,11 @@ package users;
  *
  * @author near
  */
+
 public class Admin extends Utilisateurs {
     
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-
 	
-
-
 	public Admin(String pseudo, String password){
 
         this.pseudo = pseudo;

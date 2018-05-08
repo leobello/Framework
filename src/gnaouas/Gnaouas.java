@@ -7,6 +7,7 @@ package gnaouas;
 
 import users.*;
 import contenu.*;
+import services.Privee;
 
 
 /**
@@ -19,18 +20,38 @@ public class Gnaouas {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-
+        
         User mouataz = new User("mouataz",22);
         User amine = new User("amine",22);
-        amine.friendReq(mouataz);
-        Contenu<Photo> c = new Contenu<Photo>(new Photo("usr/bin"), mouataz);
-        c.like(amine);
-        System.out.println("---- "+amine.getFriendReq(0).getName());
-        c.whoLike();
-              
-      
+        User leo = new User("leo", 27);
+        //User pablo = new User("pablo",21);
         
+        mouataz.friendReq(leo);
+        amine.friendReq(leo);
+        //pablo.friendReq(leo);
+        //leo.friendReq(amine);
+        //amine.friendReq(mouataz);
+
+        
+        // test des friend request
+        System.out.println("______________________________");
+        leo.getAllFriendRqst();
+        System.out.println("amis de léo: ");
+        leo.printFriend();
+        System.out.println("amis de mouataz: ");
+        mouataz.printFriend();
+        
+        
+        // test sur le partage de contenu
+        Contenu c = new Contenu(new Photo("/usr/bin/a"), amine, new Privee());
+        amine.publier(c);
+        System.out.println("nb publication amine: "+amine.getPartages().size());
+        Contenu c2 = new Contenu(new Photo("/usr/bin/b"), mouataz, new Privee());
+        mouataz.publier(c2);
+        System.out.println(leo.getTimeline().size()+" contenu dans la timeline");
+        System.out.println("publié par: "+leo.getTimeline().get(0).getUser().getName());
+        
+                
     } 
     
 }

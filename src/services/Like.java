@@ -4,8 +4,7 @@
  * and open the template in the editor.
  */
 package services;
-import contenu.Contenu;
-import contenu.Types;
+import contenu.*;
 import users._Utilisateurs;
 /**
  *
@@ -14,16 +13,11 @@ import users._Utilisateurs;
 public class Like extends Reactions implements _Reactions {
     
 	
-    public Like(_Utilisateurs user,Contenu<Types> c){
+    public Like(_Utilisateurs user,Contenu c){
         this.c = c;
         this.user = user;
         
     }
-
-    @Override
-    public String getName() {
-        return super.name;
-        
-    }
+    
     
 }

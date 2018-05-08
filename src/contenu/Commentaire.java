@@ -13,7 +13,7 @@ import users.*;
  */
 public class Commentaire extends Types {
     
-	private Contenu<Types> contenu;
+	private Contenu contenu;
 	private String comment;
 	private _Utilisateurs user;
     
@@ -31,7 +31,7 @@ public class Commentaire extends Types {
         this.user = user;
     }
     
-    public Commentaire(_Utilisateurs user, Contenu<Types> c, String comment){
+    public Commentaire(_Utilisateurs user, Contenu c, String comment){
         super.name = this.getClass().getName();
         this.comment = comment;
         this.user = user;
@@ -44,6 +44,6 @@ public class Commentaire extends Types {
     public String getComment(){ return this.comment; }
     public void setComment(String comment) { this.comment = comment; }
 
-    public Contenu<Types> getContenu(){ return this.contenu; }
-    public void setContenu(Contenu<Types> c) { this.contenu = c; }
+    public Contenu getContenu(){ return this.contenu; }
+    public void setContenu(Contenu c) { this.contenu = c; }
 }

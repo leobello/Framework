@@ -5,8 +5,7 @@
  */
 package services;
 
-import contenu.Contenu;
-import contenu.Types;
+import contenu.*;
 import users._Utilisateurs;
 
 /**
@@ -15,10 +14,11 @@ import users._Utilisateurs;
  */
 public abstract class Reactions implements _Reactions {
     protected String name;
-    protected Contenu<Types> c;
+    protected Contenu c;
     protected _Utilisateurs user;
     
     public void who() { System.out.println(this.name); }
-    public Contenu<Types> what() { return this.c; }
+    public Contenu what() { return this.c; }
+    public String getName() { return this.name; }
     
 }
