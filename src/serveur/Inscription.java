@@ -27,6 +27,7 @@ public class Inscription extends UnicastRemoteObject implements _Inscritption, S
 	public void ajouter() throws RemoteException{
 
 
+		@SuppressWarnings("resource")
 		Scanner sc=new Scanner(System.in);
 		System.out.println("Entrer un login : ");
 		String login =sc.nextLine();
@@ -84,6 +85,7 @@ public class Inscription extends UnicastRemoteObject implements _Inscritption, S
 			ObjectInputStream ois;
 			try {
 				ois = new ObjectInputStream(new FileInputStream(inscrit));
+				@SuppressWarnings("unchecked")
 				ArrayList<Actor> users=(ArrayList<Actor>) ois.readObject();
 				ois.close();
 				return users;

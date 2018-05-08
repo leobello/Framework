@@ -4,6 +4,10 @@ import java.io.*;
 
 public class Serialization implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public File f;
 	
 	public Serialization(String fichier, Object o) throws FileNotFoundException, IOException{
