@@ -13,20 +13,14 @@ public class Test {
 	
 	public static void main(String[] args) throws FileNotFoundException, IOException{
 		
-		try {
-			LocateRegistry.createRegistry(1145);
-		   /* if (System.getSecurityManager() == null) { 
-		      System.setSecurityManager(new RMISecurityManager());
-		    }*/
-		    Users serv=new Users();
-		    String url = "rmi://localhost/Gnaouas";
-		    System.out.println("Enregistrement de l'objet avec l'url : " + url);
-		    Naming.rebind(url, serv);
-		    System.out.println("Bind réaliser ");
-		  } catch (Exception e) {
-		     e.printStackTrace();  
-		  } 
-		
+	Users basededonnes = new Users();
+	
+	System.out.println(basededonnes.getnbInscrit());
+	
+	
+	basededonnes.afficher_Utilisateurs();
+	
+	System.out.println(basededonnes.UserNameAlreadyExist("amalm"));
 		
 	}
 }

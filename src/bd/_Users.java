@@ -9,8 +9,12 @@ import java.util.ArrayList;
 import users.Utilisateurs;
 import users._Utilisateurs;
 
-public interface _Users extends Remote {
-
+public interface _Users extends Remote{
+	
+	public void suprimerBD(_Utilisateurs user) throws RemoteException;
+	
+	public boolean UserNameAlreadyExist(String userName) throws RemoteException;
+	
 	public void inscrire() throws RemoteException;
 	
 	public ArrayList<_Utilisateurs> getBD() throws RemoteException;

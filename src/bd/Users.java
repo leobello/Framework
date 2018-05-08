@@ -6,7 +6,6 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.*;
 import users.*;
-import serveur.*;
 import stockage.*;
 
 
@@ -30,7 +29,7 @@ public class Users extends UnicastRemoteObject implements _Users {
 		}
 	}
 
-	public void suprimerBD(_Utilisateurs user){
+	public void suprimerBD(_Utilisateurs user) throws RemoteException{
 		if(user.getClass().getName() == "Admin"){
 			dataFile.delete();
 			inscrits.clear();
@@ -40,9 +39,9 @@ public class Users extends UnicastRemoteObject implements _Users {
 	}
 		
 	
-	public boolean UserNameAlreadyExist(String userName) {
+	public boolean UserNameAlreadyExist(String userName) throws RemoteException {
 		for (_Utilisateurs user : inscrits) {
-			if ( userName == user.getName()) {
+			if (user.getName().equals(userName)) {
 				 return true;
 			}
 		}
