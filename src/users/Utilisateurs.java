@@ -21,6 +21,7 @@ public abstract class Utilisateurs implements _Utilisateurs, Serializable {
 	private static final long serialVersionUID = 1L;
 	protected String pseudo;
     protected String password;
+    protected Photo photoDeProfile;
     protected ArrayList<_Reactions> reactions;
     protected ArrayList<Contenu> partages;
     protected ArrayList<_Utilisateurs> friends;
@@ -42,7 +43,9 @@ public abstract class Utilisateurs implements _Utilisateurs, Serializable {
         
     public String getName(){return this.pseudo;}
     public String getPassword(){return this.password;}
-   
+    public void setPhotoDeProfile(Photo photoDeProfile){this.photoDeProfile = photoDeProfile;}
+    public Photo getPhotoDeProfile(){return this.photoDeProfile;}
+
     
     public void setName(String name){
         this.pseudo = name;
