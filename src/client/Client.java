@@ -73,7 +73,7 @@ public class Client extends UnicastRemoteObject implements _Client {
     /* (non-Javadoc)
      * @see client._Client#telecharger(serveur._Serveur, java.io.File, java.io.File)
      */
-    public void telechar﻿​_ger(_Serveur  serveur, File src, File dest) throws IOException {
+    public void telecharger(_Serveur  serveur, File src, File dest) throws IOException {
     	System.out.println("Téléchargement en cours");
         copier (serveur.getInputStream(src), new FileOutputStream(dest));
     }
@@ -139,9 +139,4 @@ public class Client extends UnicastRemoteObject implements _Client {
 			e.printStackTrace();
 		}
     }
-	@Override
-	public void telecharger(_Serveur serveur, File src, File dest) throws IOException {
-		// TODO Auto-generated method stub
-		
-	}
 }
