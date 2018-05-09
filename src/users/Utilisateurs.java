@@ -26,7 +26,7 @@ public abstract class Utilisateurs implements _Utilisateurs, Serializable {
     protected ArrayList<Contenu> partages;
     protected ArrayList<_Utilisateurs> friends;
     protected ArrayList<_Utilisateurs> followed;
-    protected ArrayList<_Utilisateurs> followby;  
+    protected ArrayList<_Utilisateurs> follow;
     protected boolean admin;
     
     
@@ -35,7 +35,7 @@ public abstract class Utilisateurs implements _Utilisateurs, Serializable {
     		this.partages = new ArrayList<Contenu>();
     		this.friends = new ArrayList<_Utilisateurs>();
     		this.followed = new ArrayList<_Utilisateurs>();
-    		this.followby= new ArrayList<_Utilisateurs>();  		
+    		this.follow= new ArrayList<_Utilisateurs>();
     }
     
     
@@ -57,6 +57,7 @@ public abstract class Utilisateurs implements _Utilisateurs, Serializable {
     public void publier(Contenu c){
     		this.partages.add(c);    	
     }
+    public void suprimer(Contenu contenu) {this.reactions.remove(contenu);}
     
    
     public void liker(Contenu c){
@@ -70,8 +71,20 @@ public abstract class Utilisateurs implements _Utilisateurs, Serializable {
     }
     
     public void commenter(Contenu c, String s) {
-    		Commentaire com = new Commentaire(this,c,s);
-    		c.addComment(com);
+        // si le contenu est privée
+        Utilisateurs owner;
+        owner = (Utilisateurs)c.getUser();
+        if(c.getPartage().getClass().toString().equals("services.Privee")){
+            if(owner.isFriend(this)){
+                Commentaire com = new Commentaire(this, c, s);
+                c.addComment(com);
+            }else{
+                System.out.println("vous n'etes pas ami avec le propiétaire");
+            }
+        }else{
+            Commentaire com = new Commentaire(this, c, s);
+            c.addComment(com);
+        }
     }
     
     public void beFriend(_Utilisateurs u) {
@@ -83,6 +96,35 @@ public abstract class Utilisateurs implements _Utilisateurs, Serializable {
     			System.out.println(u.getName());
     		}
     }
+
+    public boolean isFriend(_Utilisateurs friend){
+        return this.friends.contains(friend);
+    }
+
+    public void follow(_Utilisateurs user){
+        this.follow.add(user);
+        Utilisateurs u2 = (Utilisateurs)user;
+        u2.followed(this);
+    }
+
+
+    public void unFollow(_Utilisateurs user){
+        this.follow.remove(user);
+        Utilisateurs u2 = (Utilisateurs)user;
+        u2.unfollowed(this);
+    }
+
+    public void followed(_Utilisateurs user){
+        this.followed(user);
+    }
+
+    public void unfollowed(_Utilisateurs user){
+        followed.remove(user);
+    }
+
+
+
+
     
    /* fonction tri date et stat à faire  */
     
@@ -113,13 +155,18 @@ public abstract class Utilisateurs implements _Utilisateurs, Serializable {
     		}	
     		return timeline;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-         
+
+    public void setPseudo(String pseudo) {
+        this.pseudo = pseudo;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    public void delContenu(Contenu contenu){
+        this.partages.remove(contenu);
+    }
+
+
+
 }
