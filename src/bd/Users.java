@@ -6,7 +6,6 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.*;
 import users.*;
-import serveur.*;
 import stockage.*;
 
 
@@ -57,7 +56,7 @@ public class Users extends UnicastRemoteObject implements _Users {
 		System.out.println("Entrer un login : ");
 		String login =sc.nextLine();
 		while ( UserNameAlreadyExist(login)) {
-			System.out.println("Le login que vous venez de rentrez existe déja, veillez en entrez un autre");
+			System.out.println("Le login que vous venez de rentrez existe dï¿½ja, veillez en entrez un autre");
 			login =sc.nextLine();
 		}
 		System.out.println("Entrer un mot de passe : ");
