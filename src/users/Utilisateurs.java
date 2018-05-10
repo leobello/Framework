@@ -5,12 +5,21 @@
  */
 package users;
 
-import contenu.*;
-
-
 import java.io.Serializable;
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
-import services.*;
+
+import bd._Users;
+import contenu.Commentaire;
+import contenu.Contenu;
+import contenu.Photo;
+import serveur.Serveur;
+import services.Dislike;
+import services.Like;
+import services._Reactions;
 
 /**
  *
@@ -168,5 +177,11 @@ public abstract class Utilisateurs implements _Utilisateurs, Serializable {
     }
 
 
+    public Utilisateurs searchUser(String login) throws MalformedURLException, RemoteException, NotBoundException {
+    	String url="rmi://"+Serveur.listen+"/Gnaouas";
+    	_Users server=(_Users)Naming.lookup(url); 
+    	return server.getUser(login);
+    }
 
+    
 }
