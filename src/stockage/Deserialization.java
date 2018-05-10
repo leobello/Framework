@@ -4,6 +4,10 @@ import java.io.*;
 
 public class Deserialization implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public File f;
 	public Object ReadedObject;
 	
