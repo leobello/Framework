@@ -37,6 +37,7 @@ public class Users extends UnicastRemoteObject implements _Users {
 		}
 	}
 	
+	
 	public int getIndexOfUser(String login) {
 		for (int i = 0; i < inscrits.size(); i++) {
 			if (inscrits.get(i).equals(login)) {
@@ -46,6 +47,8 @@ public class Users extends UnicastRemoteObject implements _Users {
 		return -1;
 		
 	}
+	
+	
 	
 	// à gerer du coté de léo, il devrait définir une fonction qui prends l'utilisateur (this) et le login du mec à bannir
 	
@@ -128,31 +131,12 @@ public class Users extends UnicastRemoteObject implements _Users {
 		for (_Utilisateurs p : inscrits) {
 			System.out.println(p.getName());
 			if (p.getName().equals(pseudo)) {
-				System.out.println("done");
 				return (Utilisateurs) p;
 			}
 		}
 		return null;
 	}
 
-	/*public void connectUser() throws RemoteException {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Entrer votre login : ");
-		String login = sc.nextLine();
-		System.out.println("Entrer votre mdp");
-		String mdp = sc.nextLine();
-		try {
-			while (!checkUser(login, mdp)) {
-				System.out.println("Entrer votre login : ");
-				login = sc.nextLine();
-				System.out.println("Entrer votre mdp");
-				mdp = sc.nextLine();
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}*/
 
 	public boolean checkUser(String login, String mdp) throws RemoteException {
 		lireBDFile();

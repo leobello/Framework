@@ -5,6 +5,14 @@
  */
 package users;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+
+import bd._Users;
+import serveur.Serveur;
+
 /**
  *
  * @author near
@@ -21,5 +29,15 @@ public class Admin extends Utilisateurs {
         this.admin = true;
     }
     
+    public void Bannir(String login) throws MalformedURLException, RemoteException, NotBoundException {
+    	String url="rmi://"+Serveur.listen+"/Gnaouas";
+    	_Users serv=(_Users)Naming.lookup(url);
+    	serv.bannir(this, login);
+    }
     
+    public void SupprimerBD(String login) throws MalformedURLException, RemoteException, NotBoundException {
+    	String url="rmi://"+Serveur.listen+"/Gnaouas";
+    	_Users serv=(_Users)Naming.lookup(url);
+    	serv.suprimerBD(this);
+    }
 }
