@@ -15,7 +15,7 @@ import users.*;
 /**
  *
  * @author near
- * @param <T>
+ *
  */
 public class Contenu{
 	
@@ -117,6 +117,8 @@ public class Contenu{
     			System.out.println(c.getComment());
     		}
     }
+
+
     
     
     

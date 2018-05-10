@@ -50,7 +50,10 @@ public class Gnaouas {
         mouataz.publier(c2);
         System.out.println(leo.getTimeline().size()+" contenu dans la timeline");
         System.out.println("publié par: "+leo.getTimeline().get(0).getUser().getName());
-        
+        leo.commenter(c2,"hahaha trop moche ta photo");
+        c2.printComment();
+        System.out.println(c2.getPartage().getClass().getName());
+
                 
     } 
     
