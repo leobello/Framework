@@ -50,7 +50,6 @@ public class Users extends UnicastRemoteObject implements _Users {
 	
 	
 	
-	// à gerer du coté de léo, il devrait définir une fonction qui prends l'utilisateur (this) et le login du mec à bannir
 	
 	public void bannir(_Utilisateurs admin, String login) {
 		if (admin.getClass().getName().equals("Admin")) {
