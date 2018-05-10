@@ -29,11 +29,29 @@ public class Users extends UnicastRemoteObject implements _Users {
 	}
 
 	public void suprimerBD(_Utilisateurs user) throws RemoteException {
-		if (user.getClass().getName() == "Admin") {
+		if (user.getClass().getName().equals("Admin")) {
 			dataFile.delete();
 			inscrits.clear();
 			nbInscrit = 0;
 			nbConnected = 0;
+		}
+	}
+	
+	public int getIndexOfUser(String login) {
+		for (int i = 0; i < inscrits.size(); i++) {
+			if (inscrits.get(i).equals(login)) {
+				return i;
+			}
+		}
+		return -1;
+		
+	}
+	
+	// à gerer du coté de léo, il devrait définir une fonction qui prends l'utilisateur (this) et le login du mec à bannir
+	
+	public void bannir(_Utilisateurs admin, String login) {
+		if (admin.getClass().getName().equals("Admin")) {
+			this.inscrits.remove(getIndexOfUser(login)) ;
 		}
 	}
 
