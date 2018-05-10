@@ -7,9 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.rmi.Remote;
-import java.rmi.RemoteException;
 
-import client._Client;
 
 /**
  * l'interface qui etends la class Remote et qui contient les méthodes qui vont être utilisées par le client
