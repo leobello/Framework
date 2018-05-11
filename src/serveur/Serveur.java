@@ -23,7 +23,7 @@ import output.RMIOutputStreamImpl;
  *
  */
 public class Serveur extends UnicastRemoteObject implements _Serveur {
-
+	public static final String listen="localhost";
 	private static final long serialVersionUID = 1L;
 	private Registry rmiRegistry;
 

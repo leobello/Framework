@@ -5,11 +5,13 @@
  */
 package users;
 
-import contenu.*;
-
-
 import java.io.Serializable;
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.EmptyStackException;
 
 import services.*;
@@ -17,6 +19,17 @@ import sun.invoke.empty.Empty;
 import sun.text.normalizer.Trie;
 
 import javax.naming.OperationNotSupportedException;
+=======
+
+import bd._Users;
+import contenu.Commentaire;
+import contenu.Contenu;
+import contenu.Photo;
+import serveur.Serveur;
+import services.Dislike;
+import services.Like;
+import services._Reactions;
+>>>>>>> aad6ebdc5bf5c17f34773935cb3d39a7ba49e8fe
 
 /**
  *
@@ -182,4 +195,15 @@ public abstract class Utilisateurs implements _Utilisateurs, Serializable {
         this.partages.remove(contenu);
     }
 
+<<<<<<< HEAD
+=======
+
+    public Utilisateurs searchUser(String login) throws MalformedURLException, RemoteException, NotBoundException {
+    	String url="rmi://"+Serveur.listen+"/Gnaouas";
+    	_Users server=(_Users)Naming.lookup(url); 
+    	return server.getUser(login);
+    }
+
+    
+>>>>>>> aad6ebdc5bf5c17f34773935cb3d39a7ba49e8fe
 }

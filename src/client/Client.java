@@ -15,6 +15,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.Scanner;
 
 import bd._Users;
+import serveur.Serveur;
 import serveur._Serveur;
 
 /**
@@ -80,7 +81,7 @@ public class Client extends UnicastRemoteObject implements _Client {
     
     public Object[] inscription() throws MalformedURLException, RemoteException, NotBoundException{
     	Object[] user=new Object[4];
-    	String url = "rmi://localhost/Gnaouas";
+    	String url="rmi://"+Serveur.listen+"/Gnaouas";;
 		_Users server=(_Users)Naming.lookup(url);
     	Scanner sc=new Scanner(System.in);
 		System.out.println("Entrer un login : ");
@@ -118,7 +119,7 @@ public class Client extends UnicastRemoteObject implements _Client {
 		return user;
     }
     public void connectUser() throws MalformedURLException, RemoteException, NotBoundException{
-    	String url = "rmi://localhost/Gnaouas";
+    	String url="rmi://"+Serveur.listen+"/Gnaouas";
 		_Users server=(_Users)Naming.lookup(url);
     	Scanner sc = new Scanner(System.in);
 		System.out.println("Entrer votre login : ");
