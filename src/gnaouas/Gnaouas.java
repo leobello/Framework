@@ -9,6 +9,9 @@ import users.*;
 import contenu.*;
 import services.Privee;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 
 /**
  *
@@ -47,13 +50,33 @@ public class Gnaouas {
         amine.publier(c);
         System.out.println("nb publication amine: "+amine.getPartages().size());
         Contenu c2 = new Contenu(new Photo("/usr/bin/b"), mouataz, new Privee());
+        Contenu c3 = new Contenu(new Photo("/usr/bin/b"), mouataz, new Privee());
+
+
         mouataz.publier(c2);
         System.out.println(leo.getTimeline().size()+" contenu dans la timeline");
         System.out.println("publié par: "+leo.getTimeline().get(0).getUser().getName());
-        leo.commenter(c2,"hahaha trop moche ta photo");
+        //leo.commenter(c2,"hahaha trop moche ta photo");
         c2.printComment();
         System.out.println(c2.getPartage().getClass().getName());
 
+        Scanner sc = new Scanner(System.in);
+        int i = sc.nextInt();
+        ArrayList<Contenu> list = new ArrayList<>();
+        while(i<3){
+            list.add(new Contenu(new Photo(""),leo,new Privee()));
+            i = sc.nextInt();
+        }
+        list.add(c);
+        list.add(c3);
+        for(Contenu d : list){
+            System.out.println(d.getDate().toString());
+        }
+        ArrayList<Contenu> list2 = leo.cleanTimeLine(list);
+        System.out.println("------------------------------");
+        for(Contenu d : list2){
+            System.out.println(d.getDate().toString());
+        }
                 
     } 
     

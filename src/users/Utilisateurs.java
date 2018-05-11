@@ -10,7 +10,13 @@ import contenu.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.EmptyStackException;
+
 import services.*;
+import sun.invoke.empty.Empty;
+import sun.text.normalizer.Trie;
+
+import javax.naming.OperationNotSupportedException;
 
 /**
  *
@@ -29,7 +35,7 @@ public abstract class Utilisateurs implements _Utilisateurs, Serializable {
     protected ArrayList<_Utilisateurs> follow;
     protected boolean admin;
     
-    
+
     public Utilisateurs() {
     		this.reactions = new ArrayList<_Reactions>();
     		this.partages = new ArrayList<Contenu>();
@@ -46,7 +52,7 @@ public abstract class Utilisateurs implements _Utilisateurs, Serializable {
     public void setPhotoDeProfile(Photo photoDeProfile){this.photoDeProfile = photoDeProfile;}
     public Photo getPhotoDeProfile(){return this.photoDeProfile;}
 
-    
+
     public void setName(String name){
         this.pseudo = name;
     }
@@ -70,7 +76,7 @@ public abstract class Utilisateurs implements _Utilisateurs, Serializable {
         reactions.add(r);
     }
     
-    public void commenter(Contenu c, String s) {
+    public void commenter(Contenu c, String s) throws OperationNotSupportedException {
         // si le contenu est privée
         Utilisateurs owner;
         owner = (Utilisateurs)c.getUser();
@@ -79,7 +85,8 @@ public abstract class Utilisateurs implements _Utilisateurs, Serializable {
                 Commentaire com = new Commentaire(this, c, s);
                 c.addComment(com);
             }else{
-                System.out.println("vous n'etes pas ami avec le propiétaire");
+                throw new OperationNotSupportedException();
+
             }
         }else{
             Commentaire com = new Commentaire(this, c, s);
@@ -125,25 +132,35 @@ public abstract class Utilisateurs implements _Utilisateurs, Serializable {
 
 
 
-    
-   /* fonction tri date et stat à faire  */
-    
-    public void triTimeline(ArrayList<Contenu> list) {
+
+    /* renvoi le plus vieux contenue d'une liste */
+    static public Contenu getYouger(ArrayList<Contenu> list) {
 	   Contenu older;
-	   ArrayList<Contenu> timeline = new ArrayList<Contenu>();
-	   int i = 0;
-	   if(!list.isEmpty()) {
-		   older = list.get(i);
-		   for(i = 1 ; i < list.size(); i++) {
-			   if( older.getDate().compareTo(list.get(i).getDate()) < 0 ) {
-				   timeline.add(older);
-				   list.remove(older);
-			   }
-			   
-		   }
-	   }
+	   ArrayList<Contenu> timeline = new ArrayList();
+
+        older = list.get(0);
+        for(int i = 0 ; i < list.size(); i++) {
+            if( older.getDate().compareTo(list.get(i).getDate()) < 0 ) {
+			       older = list.get(i);
+            }
+
+        }
+        return older;
     }
-    
+
+    public ArrayList<Contenu> cleanTimeLine(ArrayList<Contenu> list){
+        ArrayList<Contenu> timeline = list;
+        ArrayList<Contenu> timeline2 = new ArrayList();
+        Contenu c;
+        int taille=list.size();
+        for (int i = 0; i < taille; i++){
+            c = getYouger(list);
+            timeline2.add(c);
+            timeline.remove(c);
+        }
+        return timeline2;
+    }
+
     public ArrayList<Contenu> getTimeline(){
     		ArrayList<Contenu> timeline = new ArrayList<Contenu>();
     		Utilisateurs u2 = null;
@@ -156,9 +173,7 @@ public abstract class Utilisateurs implements _Utilisateurs, Serializable {
     		return timeline;
     }
 
-    public void setPseudo(String pseudo) {
-        this.pseudo = pseudo;
-    }
+
 
     public void setPassword(String password) {
         this.password = password;
@@ -166,7 +181,5 @@ public abstract class Utilisateurs implements _Utilisateurs, Serializable {
     public void delContenu(Contenu contenu){
         this.partages.remove(contenu);
     }
-
-
 
 }
