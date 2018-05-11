@@ -4,12 +4,15 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import contenu.*;
 import stockage.*;
 
-public class Publications implements Serializable {
+public class Publications extends UnicastRemoteObject  implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private ArrayList<Contenu> contenuPublique;
 	private int nbArchiveFiles;
 	private  String FileName = "Archive"+nbArchiveFiles;
@@ -17,7 +20,7 @@ public class Publications implements Serializable {
 
 	
 	
-	public Publications() {
+	public Publications() throws RemoteException{
 		contenuPublique = new ArrayList<Contenu>();
 		nbArchiveFiles = 1;
 		definirNewFichier();
@@ -27,7 +30,7 @@ public class Publications implements Serializable {
 		ArchiveFile = new File(FileName);
 	}
 
-	public void Archiver() {
+	public void Archiver() throws RemoteException {
 		try {
 			new Serialization(ArchiveFile,contenuPublique);
 			nbArchiveFiles++;
@@ -40,13 +43,14 @@ public class Publications implements Serializable {
 			e.printStackTrace();
 		}
 	}
-
-	public void publier() {
-		
+	
+	public void publier(Contenu T) throws RemoteException {
+		contenuPublique.add(T);
 	}
+
 	
 	
-	public ArrayList<Contenu> getContenuPublique() {
+	public ArrayList<Contenu> getContenuPublique() throws RemoteException {
 		return contenuPublique;
 	}
 

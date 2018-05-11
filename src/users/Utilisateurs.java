@@ -12,6 +12,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import bd.Publications;
 import bd._Users;
 import contenu.Commentaire;
 import contenu.Contenu;
@@ -183,5 +184,10 @@ public abstract class Utilisateurs implements _Utilisateurs, Serializable {
     	return server.getUser(login);
     }
 
+    public void publierENPublique(Contenu P) throws MalformedURLException, RemoteException, NotBoundException {
+    	String url="rmi://"+Serveur.listen+"/Gnaouas";
+    	Publications server=(Publications)Naming.lookup(url);
+    	server.publier(P);
+    }
     
 }
