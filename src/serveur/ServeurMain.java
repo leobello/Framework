@@ -11,11 +11,11 @@ public class ServeurMain {
 		// TODO Auto-generated method stub
 		try{
 			
-			// DÃ©finir RMI Security Manager
+			// Définir RMI Security Manager
 			if (System.getSecurityManager() == null) {
 				//System.setSecurityManager(new RMISecurityManager());
 			}
-			// CrÃ©er le serveur
+			// Créeer le serveur
 			Serveur serveur= new Serveur();
 			// DÃ©marrer le serveur
 			serveur.start();

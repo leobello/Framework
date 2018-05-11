@@ -48,7 +48,7 @@ public class Users extends UnicastRemoteObject implements _Users {
 		
 	}
 		
-	public void bannir(_Utilisateurs admin, String login) {
+	public void bannir(_Utilisateurs admin, String login) throws RemoteException {
 		if (admin.getClass().getName().equals("Admin")) {
 			this.inscrits.remove(getIndexOfUser(login)) ;
 		}
