@@ -29,11 +29,28 @@ public class Users extends UnicastRemoteObject implements _Users {
 	}
 
 	public void suprimerBD(_Utilisateurs user) throws RemoteException {
-		if (user.getClass().getName() == "Admin") {
+		if (user.getClass().getName().equals("Admin")) {
 			dataFile.delete();
 			inscrits.clear();
 			nbInscrit = 0;
 			nbConnected = 0;
+		}
+	}
+	
+	
+	public int getIndexOfUser(String login) {
+		for (int i = 0; i < inscrits.size(); i++) {
+			if (inscrits.get(i).equals(login)) {
+				return i;
+			}
+		}
+		return -1;
+		
+	}
+		
+	public void bannir(_Utilisateurs admin, String login) {
+		if (admin.getClass().getName().equals("Admin")) {
+			this.inscrits.remove(getIndexOfUser(login)) ;
 		}
 	}
 
@@ -114,7 +131,6 @@ public class Users extends UnicastRemoteObject implements _Users {
 		for (_Utilisateurs p : inscrits) {
 			System.out.println(p.getName());
 			if (p.getName().equals(pseudo)) {
-				System.out.println("done");
 				return (Utilisateurs) p;
 			}
 		}

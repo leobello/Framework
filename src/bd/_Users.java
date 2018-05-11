@@ -30,6 +30,8 @@ public interface _Users extends Remote{
 	
 	public boolean checkUser(String login, String mdp) throws RemoteException ;
 	
+	public void bannir(_Utilisateurs admin, String login);
+	
 	//public void connectUser() throws RemoteException;
 	
 }

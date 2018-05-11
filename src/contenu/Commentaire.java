@@ -6,7 +6,6 @@
 package contenu;
 
 import users.*;
-
 /**
  *
  * @author near

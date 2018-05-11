@@ -1,3 +1,4 @@
+
 package serveur;
 
 import java.io.File;
@@ -11,14 +12,11 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
 
-import bd.Users;
 import input.RMIInputStream;
 import input.RMIInputStreamImpl;
 import output.RMIOutputStream;
 import output.RMIOutputStreamImpl;
-import users._Utilisateurs;
 
 /**
  * class qui implements l'interface _Serveur
@@ -26,11 +24,11 @@ import users._Utilisateurs;
  *
  */
 public class Serveur extends UnicastRemoteObject implements _Serveur {
-
+	public static final String listen="localhost";
 	private static final long serialVersionUID = 1L;
 	private Registry rmiRegistry;
 
-	public Serveur() throws RemoteException {
+	protected Serveur() throws RemoteException {
 		super();
 
 	}

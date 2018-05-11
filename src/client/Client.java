@@ -15,6 +15,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.Scanner;
 
 import bd._Users;
+import serveur.Serveur;
 import serveur._Serveur;
 
 /**
@@ -56,36 +57,33 @@ public class Client extends UnicastRemoteObject implements _Client {
 	 * 
 	 * @see client._Client#copier(java.io.InputStream, java.io.OutputStream)
 	 */
-	public void copier(InputStream in, OutputStream out) throws IOException {
-		byte[] b = new byte[BUF_SIZE];
-		int len;
-		while ((len = in.read(b)) >= 0) {
-			out.write(b, 0, len);
-		}
-		in.close();
-		out.close();
-	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see client._Client#uploader(serveur._Serveur, java.io.File, java.io.File)
-	 */
-	public void uploader(_Serveur serveur, File src, File dest) throws IOException {
-		System.out.println("Upload en cours");
-		copier(new FileInputStream(src), serveur.getOutputStream(dest));
-	}
+	public void copier(InputStream in, OutputStream out)  throws IOException {
+        byte[] b = new byte[BUF_SIZE];
+        int len;
+        while ((len = in.read(b)) >= 0) {
+            out.write(b, 0, len);
+        }
+        in.close();
+        out.close();
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see client._Client#telecharger(serveur._Serveur, java.io.File, java.io.File)
-	 */
-	public void telecharger(_Serveur serveur, File src, File dest) throws IOException {
-		System.out.println("Téléchargement en cours");
-		copier(serveur.getInputStream(src), new FileOutputStream(dest));
-	}
+    /* (non-Javadoc)
+     * @see client._Client#uploader(serveur._Serveur, java.io.File, java.io.File)
+     */
+    public void uploader(_Serveur serveur, File src, File dest) throws IOException {
+        System.out.println("Upload en cours");
+    	copier (new FileInputStream(src), serveur.getOutputStream(dest));
+    }
 
+    /* (non-Javadoc)
+     * @see client._Client#telecharger(serveur._Serveur, java.io.File, java.io.File)
+     */
+    public void telecharger(_Serveur  serveur, File src, File dest) throws IOException {
+    	System.out.println("Téléchargement en cours");
+        copier (serveur.getInputStream(src), new FileOutputStream(dest));
+    }
+    
 	/**
 	 * @param pseudo
 	 * @param password
@@ -109,8 +107,8 @@ public class Client extends UnicastRemoteObject implements _Client {
 				System.out.println("PAS INSCRIT");
 			}
 		}
-	}
-
+    }
+ 
 	/**
 	 * @param login
 	 * @param password
