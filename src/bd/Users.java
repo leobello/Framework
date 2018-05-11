@@ -46,25 +46,29 @@ public class Users extends UnicastRemoteObject implements _Users {
 		return false;
 	}
 
-	public void inscrire(String login, String mdp, int typeUtilisateur, int age) throws RemoteException {
+	public boolean inscrire(String login, String mdp, int typeUtilisateur, int age) throws RemoteException, IOException {
 		
 		switch (typeUtilisateur) {
 		case 1:
 			inscrits.add(new Diffuseur(login, mdp));
-			break;
+			nbInscrit++;
+			enregistrerBD();
+			System.out.println("Bien Inscrit");
+			return true;
 		case 2:
 			inscrits.add(new Admin(login, mdp));
-			break;
+			nbInscrit++;
+			enregistrerBD();
+			System.out.println("Bien Inscrit");
+			return true;
 		default:
 			inscrits.add(new User(login, mdp, age));
-		}
-		nbInscrit++;
-		try {
+			nbInscrit++;
 			enregistrerBD();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Bien Inscrit");
+			return true;
 		}
+		
 	}
 
 	public ArrayList<_Utilisateurs> getBD() throws NullPointerException, RemoteException {
@@ -76,7 +80,7 @@ public class Users extends UnicastRemoteObject implements _Users {
 		try {
 			ArrayList<_Utilisateurs> p = getBD();
 			for (_Utilisateurs us : p) {
-				System.out.println(us.getName());
+				System.out.println(us.getName() +" "+ us.getPassword());
 			}
 		} catch (NullPointerException e) {
 			System.out.println("il n'y aucun utilisateur pour l'instant");
@@ -117,29 +121,12 @@ public class Users extends UnicastRemoteObject implements _Users {
 		return null;
 	}
 
-	/*public void connectUser() throws RemoteException {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Entrer votre login : ");
-		String login = sc.nextLine();
-		System.out.println("Entrer votre mdp");
-		String mdp = sc.nextLine();
-		try {
-			while (!checkUser(login, mdp)) {
-				System.out.println("Entrer votre login : ");
-				login = sc.nextLine();
-				System.out.println("Entrer votre mdp");
-				mdp = sc.nextLine();
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}*/
-
 	public boolean checkUser(String login, String mdp) throws RemoteException {
 		lireBDFile();
 		ArrayList<_Utilisateurs> list = getBD();
+		System.out.println(list.size());
 		for (_Utilisateurs user : list) {
+			//System.out.println("Compare celui là : "+user.getName() +" "+user.getPassword()+" avec : "+login+" "+mdp);
 			if (user.getName().equals(login) && user.getPassword().equals(mdp)) {
 				System.out.println("connected");
 				nbConnected++;
@@ -148,7 +135,6 @@ public class Users extends UnicastRemoteObject implements _Users {
 				return true;
 			} else {
 				System.out.println("Login or password not correct");
-				return false;
 			}
 		}
 		return false;

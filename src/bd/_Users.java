@@ -6,6 +6,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import serveur._Serveur;
 import users.Utilisateurs;
 import users._Utilisateurs;
 
@@ -15,7 +16,7 @@ public interface _Users extends Remote{
 	
 	public boolean UserNameAlreadyExist(String userName) throws RemoteException;
 	
-	public void inscrire(String login,String mdp,int typeUtilisateur,int age) throws RemoteException;
+	public boolean inscrire(String login,String mdp,int typeUtilisateur,int age) throws RemoteException,FileNotFoundException, IOException;
 	
 	public ArrayList<_Utilisateurs> getBD() throws RemoteException;
 	

@@ -31,4 +31,12 @@ import client._Client;
 	 * @throws IOException
 	 */
 	public InputStream getInputStream(File f) throws IOException ;
+	
+	/**
+	 * @param login
+	 * @param mdp
+	 * @return true
+	 * @throws RemoteException
+	 */
+	//public boolean checkUser(String login, String mdp) throws RemoteException;
 }
