@@ -1,3 +1,4 @@
+
 package serveur;
 
 import java.io.File;
@@ -41,7 +42,7 @@ public class Serveur extends UnicastRemoteObject implements _Serveur {
 		// Créer le registr avec le port 1099
 		rmiRegistry = LocateRegistry.createRegistry(1099);
 		// Enregistrer l'objet créé dans le registre de noms en lui affectant un nom
-		String url = "rmi://152.77.82.60/Gnaouas";
+		String url = "rmi://localhost/Gnaouas";
 		Naming.rebind(url, this);
 		System.out.println("Serveur est prêt");
 	}

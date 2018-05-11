@@ -15,7 +15,7 @@ public class Test {
 	public static void main(String[] args) throws FileNotFoundException, IOException{
 		LocateRegistry.createRegistry(10977);
         Users dg=new Users();
-        //System.out.println(InetAddress.getByName("F211-08").getHostAddress());
+        dg.afficher_Utilisateurs();
         String url="rmi://localhost/Gnaouas";
         System.out.println("enregistrer dans : "+url);
         Naming.rebind(url,dg);
