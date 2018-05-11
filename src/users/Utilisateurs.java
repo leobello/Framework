@@ -12,13 +12,6 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-<<<<<<< HEAD
-
-/**
- *
- * @author near
- */
-=======
 import bd.Publications;
 import javax.naming.OperationNotSupportedException;
 
@@ -33,7 +26,6 @@ import services._Reactions;
 
 
 
->>>>>>> branch 'master' of https://github.com/leobello/Framework.git
 public abstract class Utilisateurs implements _Utilisateurs, Serializable {
    
 	private static final long serialVersionUID = 1L;
