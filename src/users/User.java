@@ -76,6 +76,8 @@ public class User  extends Utilisateurs  {
     		while(!this.friendrq.isEmpty()) {
     			this.getFriendReqst();
     		}
-    }  
+    }
+
+
        
 }
