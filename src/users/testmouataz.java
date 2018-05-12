@@ -6,7 +6,10 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 import bd._Publications;
+import contenu.Contenu;
+import contenu.Photo;
 import serveur.Serveur;
+import services.Public;
 
 public class testmouataz {
 
@@ -22,7 +25,7 @@ public class testmouataz {
 			// j'arrive pas r�usssi � cr�er le contenu parce que je bloque sur le troisi�me argument public, est ce que tu peux g�rer ca stp
 			// sinon tout est bon il va falloir juste tester cette fonctionnalit�.
 
-			//Contenu C = new Contenu(new Photo(""), pers, new Public(pers, C));
+			Contenu C = new Contenu(new Photo(""), pers, new Public());
 			
 			//pers.publier(c);
 			

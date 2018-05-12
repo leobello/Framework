@@ -15,12 +15,7 @@ import users._Utilisateurs;
  * @author near
  */
 public class Public extends Partage{
-	_Utilisateurs owner;
-	Contenu c;
-	public Public(_Utilisateurs owner, Contenu c ) {
-		// TODO Auto-generated method stub
-		this.owner = owner;
-		this.c = c;
-	}
+	
+	
 		
 }
