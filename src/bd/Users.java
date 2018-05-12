@@ -1,19 +1,12 @@
 package bd;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+
+import java.io.*;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
-
-import stockage.Deserialization;
-import stockage.Serialization;
-import users.Admin;
-import users.Diffuseur;
-import users.User;
-import users.Utilisateurs;
-import users._Utilisateurs;
+import stockage.*;
+import users.*;
 
 public class Users extends UnicastRemoteObject implements _Users {
 
@@ -45,7 +38,7 @@ public class Users extends UnicastRemoteObject implements _Users {
 	}
 	
 	
-	public int getIndexOfUser(String login) {
+	public int getIndexOfUser(String login) throws RemoteException {
 		for (int i = 0; i < inscrits.size(); i++) {
 			if (inscrits.get(i).getName().equals(login)) {
 				return i;
