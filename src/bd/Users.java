@@ -1,4 +1,3 @@
-
 package bd;
 
 import java.io.File;
@@ -152,7 +151,7 @@ public class Users extends UnicastRemoteObject implements _Users {
 		ArrayList<_Utilisateurs> list = getBD();
 		System.out.println(list.size());
 		for (_Utilisateurs user : list) {
-			//System.out.println("Compare celui l√† : "+user.getName() +" "+user.getPassword()+" avec : "+login+" "+mdp);
+			//System.out.println("Compare celui l‡ : "+user.getName() +" "+user.getPassword()+" avec : "+login+" "+mdp);
 			if (user.getName().equals(login) && user.getPassword().equals(mdp)) {
 				System.out.println("connected");
 				nbConnected++;

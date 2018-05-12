@@ -44,6 +44,13 @@ public class Publications extends UnicastRemoteObject  implements Serializable {
 		}
 	}
 	
+	public void afficher_Publications() {
+		for (Contenu x : contenuPublique) {
+			System.out.println(x.getContenu());
+		}
+		
+	}
+	
 	public void publier(Contenu T) throws RemoteException {
 		contenuPublique.add(T);
 		if (contenuPublique.size() >=100) {

@@ -16,4 +16,6 @@ public interface _Publications extends Remote{
 	
 	public ArrayList<Contenu> getContenuPublique() throws RemoteException;
 	
+	public void afficher_Publications();
+	
 }
