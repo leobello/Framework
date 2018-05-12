@@ -5,14 +5,17 @@
  */
 package users;
 
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+
 /**
  *
  * @author near
  */
-public interface _Utilisateurs {
-    public String getName();
-    public String getPassword();
-    public void setName(String name);
+public interface _Utilisateurs extends Remote{
+    public String getName() throws RemoteException;
+    public String getPassword()throws RemoteException ;
+    public void setName(String name) throws RemoteException;
     //public void liker();
     //public void disliker();
     //public void commenter();

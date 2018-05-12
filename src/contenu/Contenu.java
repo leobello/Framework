@@ -5,6 +5,7 @@
  */
 package contenu;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -99,13 +100,23 @@ public class Contenu{
     
     public void whoLike() {
     		for(_Utilisateurs user : this.likes) {
-    			System.out.println(user.getName());
+    			try {
+					System.out.println(user.getName());
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
     		}
     }
     
     public void whoDislike() {
 		for(_Utilisateurs user : this.dislikes) {
-			System.out.println(user.getName());
+			try {
+				System.out.println(user.getName());
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
     }
     

@@ -5,6 +5,7 @@
  */
 package users;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -25,7 +26,7 @@ public class User  extends Utilisateurs  {
     		this.age = age;
     		this.friendrq = new ArrayList<_Utilisateurs>(); 
     }
-    
+    public User() {}
     public User(String pseudo, String password, int age){
         super.pseudo = pseudo;
         super.password = password;
@@ -38,7 +39,7 @@ public class User  extends Utilisateurs  {
     }
     
     // user ne peut demander un amis qu'un autre user
-    public void friendReq(User user){
+    public void friendReq(User user) throws RemoteException{
     		if(user.getClass().getName() == this.getClass().getName()) {
     			user.setFriendRqst(this);
     			
@@ -46,7 +47,7 @@ public class User  extends Utilisateurs  {
     		}   		
     }
     
-    public void getFriendReqst() {
+    public void getFriendReqst() throws RemoteException {
     		int i;
     		String c;
     		@SuppressWarnings("resource")
@@ -72,7 +73,7 @@ public class User  extends Utilisateurs  {
  
     }
     
-    public void getAllFriendRqst() {
+    public void getAllFriendRqst() throws RemoteException {
     		while(!this.friendrq.isEmpty()) {
     			this.getFriendReqst();
     		}

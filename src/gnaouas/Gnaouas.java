@@ -9,6 +9,7 @@ import users.*;
 import contenu.*;
 import services.Privee;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -21,8 +22,9 @@ public class Gnaouas {
 
     /**
      * @param args the command line arguments
+     * @throws RemoteException 
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws RemoteException {
         
         User mouataz = new User("mouataz",22);
         User amine = new User("amine",22);
