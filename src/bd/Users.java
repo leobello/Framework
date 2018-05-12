@@ -47,8 +47,13 @@ public class Users extends UnicastRemoteObject implements _Users {
 	
 	public int getIndexOfUser(String login) {
 		for (int i = 0; i < inscrits.size(); i++) {
-			if (inscrits.get(i).getName().equals(login)) {
-				return i;
+			try {
+				if (inscrits.get(i).getName().equals(login)) {
+					return i;
+				}
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 		return -1;
