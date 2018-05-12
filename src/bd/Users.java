@@ -1,12 +1,19 @@
-
 package bd;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.*;
-import users.*;
-import stockage.*;
+import java.util.ArrayList;
+
+import stockage.Deserialization;
+import stockage.Serialization;
+import users.Admin;
+import users.Diffuseur;
+import users.User;
+import users.Utilisateurs;
+import users._Utilisateurs;
 
 public class Users extends UnicastRemoteObject implements _Users {
 
@@ -40,7 +47,7 @@ public class Users extends UnicastRemoteObject implements _Users {
 	
 	public int getIndexOfUser(String login) {
 		for (int i = 0; i < inscrits.size(); i++) {
-			if (inscrits.get(i).equals(login)) {
+			if (inscrits.get(i).getName().equals(login)) {
 				return i;
 			}
 		}
@@ -48,10 +55,12 @@ public class Users extends UnicastRemoteObject implements _Users {
 		
 	}
 		
-	public void bannir(_Utilisateurs admin, String login) throws RemoteException {
-		if (admin.getClass().getName().equals("Admin")) {
-			this.inscrits.remove(getIndexOfUser(login)) ;
-		}
+	public void bannir(Admin admin, String login) throws FileNotFoundException, IOException {
+			//this.inscrits.remove(getIndexOfUser(login)) ;
+			inscrits.remove(getUser(login));
+			nbInscrit--;
+			enregistrerBD();
+		
 	}
 
 	public boolean UserNameAlreadyExist(String userName) throws RemoteException {
@@ -116,6 +125,7 @@ public class Users extends UnicastRemoteObject implements _Users {
 		new Serialization(dataFile, this.inscrits);
 	}
 
+	@SuppressWarnings("unchecked")
 	public ArrayList<_Utilisateurs> lireBDFile() throws RemoteException {
 		try {
 			Deserialization dsz = new Deserialization(dataFile);
@@ -129,7 +139,6 @@ public class Users extends UnicastRemoteObject implements _Users {
 
 	public Utilisateurs getUser(String pseudo) throws RemoteException {
 		for (_Utilisateurs p : inscrits) {
-			System.out.println(p.getName());
 			if (p.getName().equals(pseudo)) {
 				return (Utilisateurs) p;
 			}
@@ -142,7 +151,7 @@ public class Users extends UnicastRemoteObject implements _Users {
 		ArrayList<_Utilisateurs> list = getBD();
 		System.out.println(list.size());
 		for (_Utilisateurs user : list) {
-			//System.out.println("Compare celui l√† : "+user.getName() +" "+user.getPassword()+" avec : "+login+" "+mdp);
+			//System.out.println("Compare celui l‡ : "+user.getName() +" "+user.getPassword()+" avec : "+login+" "+mdp);
 			if (user.getName().equals(login) && user.getPassword().equals(mdp)) {
 				System.out.println("connected");
 				nbConnected++;

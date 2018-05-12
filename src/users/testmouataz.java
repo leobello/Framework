@@ -5,37 +5,35 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
-import bd.Publications;
-import bd.Users;
+import bd._Publications;
+import bd._Users;
+import contenu.Contenu;
+import contenu.Photo;
+import serveur.Serveur;
+import services.Public;
 
 public class testmouataz {
 
 	
 		
-		public static void main(String[] args) throws MalformedURLException, RemoteException, NotBoundException{
-			
-			
-			Users BD = new Users();
+		public static void main(String[] args) throws MalformedURLException, RemoteException, NotBoundException{		
 			// test recherche d'utilisateur
 			User pers = new User("mouataz", 22);
 			
-			String url = "rmi://localhost/Gnaouas";
+			String url = "rmi://"+Serveur.listen+"/Gnaouas";
 			
-			@SuppressWarnings("unused")
-			Publications  OpenSpace = (Publications)Naming.lookup(url);
+			_Publications  OpenSpace = (_Publications)Naming.lookup(url);
 			
-			if (pers.searchUser("amalm") != null) {
-				System.out.println("trouvé");
-			} else System.out.println("pas trouvé");
+			// j'arrive pas réusssi à créer le contenu parce que je bloque sur le troisiéme argument public, est ce que tu peux gérer ca stp
+			// sinon tout est bon il va falloir juste tester cette fonctionnalité.
 			
 			
-			// test bannir une personne
+			//Contenu C = new Contenu(new Photo(""), pers, new Public(pers, C));
 			
-			Admin dieu = new Admin("mouayaz", "123456789");
+			//pers.publier(c);
 			
-			dieu.Bannir("amalm");
+			OpenSpace.afficher_Publications();
 			
-			BD.afficher_Utilisateurs();
 			
 		}
 		
