@@ -12,7 +12,6 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.Scanner;
 
 import bd._Users;
 import serveur.Serveur;
@@ -97,7 +96,7 @@ public class Client extends UnicastRemoteObject implements _Client {
 	 */
 	public void inscription(String pseudo, String password, String passwordv, int type, int age)
 			throws NotBoundException, FileNotFoundException, IOException {
-		String url = "rmi://localhost/Gnaouas";
+		String url = "rmi://"+Serveur.listen+"/Gnaouas";
 		_Users server = (_Users) Naming.lookup(url);
 		if (server.UserNameAlreadyExist(pseudo) == true) {
 			System.out.println("Entrer un nouveau login car le dernier existe déja  ");
@@ -118,7 +117,7 @@ public class Client extends UnicastRemoteObject implements _Client {
 	 * @throws NotBoundException
 	 */
 	public Utilisateurs connectUser(String login,String password) throws MalformedURLException, RemoteException, NotBoundException {
-		String url = "rmi://localhost/Gnaouas";
+		String url = "rmi://"+Serveur.listen+"/Gnaouas";
 		_Users server = (_Users) Naming.lookup(url);
 		try {
 			if (!server.checkUser(login, password)) {

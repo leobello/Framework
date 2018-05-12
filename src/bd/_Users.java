@@ -35,5 +35,6 @@ public interface _Users extends Remote{
 	public void afficher_Utilisateurs() throws RemoteException;
 	
 	//public void connectUser() throws RemoteException;
+	public void updateUser(_Utilisateurs usr) throws RemoteException;
 	
 }

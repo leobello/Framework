@@ -47,8 +47,13 @@ public class Users extends UnicastRemoteObject implements _Users {
 	
 	public int getIndexOfUser(String login) {
 		for (int i = 0; i < inscrits.size(); i++) {
-			if (inscrits.get(i).getName().equals(login)) {
-				return i;
+			try {
+				if (inscrits.get(i).getName().equals(login)) {
+					return i;
+				}
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 		return -1;
@@ -124,6 +129,23 @@ public class Users extends UnicastRemoteObject implements _Users {
 	public void enregistrerBD() throws FileNotFoundException, IOException, RemoteException {
 		new Serialization(dataFile, this.inscrits);
 	}
+	
+	public void updateUser(_Utilisateurs usr) throws RemoteException{
+		try {
+			int UserIndex = getIndexOfUser(usr.getName());
+			inscrits.add(UserIndex, usr);
+			try {
+				enregistrerBD();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	@SuppressWarnings("unchecked")
 	public ArrayList<_Utilisateurs> lireBDFile() throws RemoteException {
@@ -151,7 +173,7 @@ public class Users extends UnicastRemoteObject implements _Users {
 		ArrayList<_Utilisateurs> list = getBD();
 		System.out.println(list.size());
 		for (_Utilisateurs user : list) {
-			//System.out.println("Compare celui là : "+user.getName() +" "+user.getPassword()+" avec : "+login+" "+mdp);
+			//System.out.println("Compare celui lï¿½ : "+user.getName() +" "+user.getPassword()+" avec : "+login+" "+mdp);
 			if (user.getName().equals(login) && user.getPassword().equals(mdp)) {
 				System.out.println("connected");
 				nbConnected++;
