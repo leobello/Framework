@@ -6,11 +6,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 import bd._Publications;
-import bd._Users;
-import contenu.Contenu;
-import contenu.Photo;
 import serveur.Serveur;
-import services.Public;
 
 public class testmouataz {
 

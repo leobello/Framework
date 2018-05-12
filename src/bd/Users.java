@@ -47,13 +47,8 @@ public class Users extends UnicastRemoteObject implements _Users {
 	
 	public int getIndexOfUser(String login) {
 		for (int i = 0; i < inscrits.size(); i++) {
-			try {
-				if (inscrits.get(i).getName().equals(login)) {
-					return i;
-				}
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			if (inscrits.get(i).getName().equals(login)) {
+				return i;
 			}
 		}
 		return -1;
@@ -131,17 +126,11 @@ public class Users extends UnicastRemoteObject implements _Users {
 	}
 	
 	public void updateUser(_Utilisateurs usr) throws RemoteException{
+		int UserIndex = getIndexOfUser(usr.getName());
+		inscrits.add(UserIndex, usr);
 		try {
-			int UserIndex = getIndexOfUser(usr.getName());
-			inscrits.add(UserIndex, usr);
-			try {
-				enregistrerBD();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-		} catch (RemoteException e) {
+			enregistrerBD();
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
