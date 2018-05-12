@@ -8,6 +8,8 @@ import java.net.InetAddress;
 import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
 
+import serveur.Serveur;
+
 
 public class Test {
 
@@ -15,8 +17,8 @@ public class Test {
 	public static void main(String[] args) throws FileNotFoundException, IOException{
 		LocateRegistry.createRegistry(10977);
         Users dg=new Users();
-        dg.afficher_Utilisateurs();
-        String url="rmi://localhost/Gnaouas";
+       // dg.afficher_Utilisateurs();
+        String url="rmi://"+Serveur.listen+"/Gnaouas";
         System.out.println("enregistrer dans : "+url);
         Naming.rebind(url,dg);
 		System.out.println("Bind Fait");

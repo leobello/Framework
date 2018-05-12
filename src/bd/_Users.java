@@ -6,7 +6,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import serveur._Serveur;
+import users.Admin;
 import users.Utilisateurs;
 import users._Utilisateurs;
 
@@ -30,7 +30,9 @@ public interface _Users extends Remote{
 	
 	public boolean checkUser(String login, String mdp) throws RemoteException ;
 	
-	public void bannir(_Utilisateurs admin, String login) throws RemoteException;
+	public void bannir(Admin admin, String login)throws FileNotFoundException, IOException ;
+	
+	public void afficher_Utilisateurs() throws RemoteException;
 	
 	//public void connectUser() throws RemoteException;
 	

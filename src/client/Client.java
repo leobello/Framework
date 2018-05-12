@@ -17,6 +17,7 @@ import java.util.Scanner;
 import bd._Users;
 import serveur.Serveur;
 import serveur._Serveur;
+import users.Utilisateurs;
 
 /**
  * @author Zakaria
@@ -116,7 +117,7 @@ public class Client extends UnicastRemoteObject implements _Client {
 	 * @throws RemoteException
 	 * @throws NotBoundException
 	 */
-	public void connectUser(String login,String password) throws MalformedURLException, RemoteException, NotBoundException {
+	public Utilisateurs connectUser(String login,String password) throws MalformedURLException, RemoteException, NotBoundException {
 		String url = "rmi://localhost/Gnaouas";
 		_Users server = (_Users) Naming.lookup(url);
 		try {
@@ -125,10 +126,13 @@ public class Client extends UnicastRemoteObject implements _Client {
 				System.out.println("Entrer votre login et le mot de passe: ");
 			}else {
 				System.out.println("Bienvenue " + login);
+				return server.getUser(login);
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		}
+		return null;
 	}
 }

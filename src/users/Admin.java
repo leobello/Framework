@@ -5,6 +5,8 @@
  */
 package users;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
@@ -32,7 +34,15 @@ public class Admin extends Utilisateurs {
     public void Bannir(String login) throws MalformedURLException, RemoteException, NotBoundException {
     	String url="rmi://"+Serveur.listen+"/Gnaouas";
     	_Users serv=(_Users)Naming.lookup(url);
-    	serv.bannir(this, login);
+    	try {
+			serv.bannir(this, login);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
     
     public void SupprimerBD(String login) throws MalformedURLException, RemoteException, NotBoundException {

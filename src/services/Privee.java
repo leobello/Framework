@@ -15,7 +15,7 @@ package services;
  */
 public class Privee extends Partage{
 	
-	/*
+	/* 
 	public Privee(_Utilisateurs owner, Contenu<Types> c ) {
 		// TODO Auto-generated method stub
 		this.owner = owner;

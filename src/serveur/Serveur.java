@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -28,7 +29,7 @@ public class Serveur extends UnicastRemoteObject implements _Serveur {
 	private static final long serialVersionUID = 1L;
 	private Registry rmiRegistry;
 
-	protected Serveur() throws RemoteException {
+	public Serveur() throws RemoteException {
 		super();
 
 	}
@@ -38,12 +39,17 @@ public class Serveur extends UnicastRemoteObject implements _Serveur {
 	 * 
 	 * @throws Exception
 	 */
-	public void start() throws Exception {
+	public void start() throws RemoteException {
 		// Créer le registr avec le port 1099
 		rmiRegistry = LocateRegistry.createRegistry(1099);
 		// Enregistrer l'objet créé dans le registre de noms en lui affectant un nom
-		String url = "rmi://localhost/Gnaouas";
-		Naming.rebind(url, this);
+		String url = "rmi://"+Serveur.listen+"/Gnaouas";
+		try {
+			Naming.rebind(url, this);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		System.out.println("Serveur est prêt");
 	}
 

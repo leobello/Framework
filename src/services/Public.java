@@ -5,6 +5,9 @@
  */
 package services;
 
+import contenu.Contenu;
+import users._Utilisateurs;
+
 //import contenu.*;
 
 /**
@@ -12,11 +15,12 @@ package services;
  * @author near
  */
 public class Public extends Partage{
-	/*
-	public Public(_Utilisateurs owner, Contenu<Types> c ) {
+	_Utilisateurs owner;
+	Contenu c;
+	public Public(_Utilisateurs owner, Contenu c ) {
 		// TODO Auto-generated method stub
 		this.owner = owner;
 		this.c = c;
 	}
-	*/	
+		
 }

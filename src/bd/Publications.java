@@ -46,16 +46,14 @@ public class Publications extends UnicastRemoteObject  implements Serializable {
 	
 	public void publier(Contenu T) throws RemoteException {
 		contenuPublique.add(T);
+		if (contenuPublique.size() >=100) {
+			Archiver();
+		}
 	}
 
 	
 	
 	public ArrayList<Contenu> getContenuPublique() throws RemoteException {
 		return contenuPublique;
-	}
-
-
-
-	
-	
+	}	
 }

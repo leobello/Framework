@@ -7,15 +7,17 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 
 
 /**
  * l'interface qui etends la class Remote et qui contient les méthodes qui vont être utilisées par le client
  * @author dzpanda
  *
- */public interface _Serveur extends Remote {
+ */
+public interface _Serveur extends Remote {
 
-	
+	public void start() throws RemoteException;
 	/**
 	 * @param f fichier dont on va écrire les données 
 	 * @return le flux de sortie à exporter (RMI)
