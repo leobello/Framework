@@ -26,7 +26,7 @@ public class User  extends Utilisateurs  {
     		this.age = age;
     		this.friendrq = new ArrayList<_Utilisateurs>(); 
     }
-    public User() {}
+    
     public User(String pseudo, String password, int age){
         super.pseudo = pseudo;
         super.password = password;
@@ -39,15 +39,21 @@ public class User  extends Utilisateurs  {
     }
     
     // user ne peut demander un amis qu'un autre user
-    public void friendReq(User user) throws RemoteException{
+    public void friendReq(User user){
     		if(user.getClass().getName() == this.getClass().getName()) {
     			user.setFriendRqst(this);
+    			super.update();
     			
-    			System.out.println(this.getName()+" send friend request to "+user.getName());
+    			try {
+					System.out.println(this.getName()+" send friend request to "+user.getName());
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
     		}   		
     }
     
-    public void getFriendReqst() throws RemoteException {
+    public void getFriendReqst() {
     		int i;
     		String c;
     		@SuppressWarnings("resource")
@@ -55,7 +61,12 @@ public class User  extends Utilisateurs  {
     		if(!friendrq.isEmpty()) {
     			i = this.friendrq.size() - 1;
     			do {
-    				System.out.println("Demande d'ami de "+this.friendrq.get(i).getName());
+    				try {
+						System.out.println("Demande d'ami de "+this.friendrq.get(i).getName());
+					} catch (RemoteException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
     				System.out.println("accepter: yes/no"); 
     				c = sc.nextLine();
     			}while(!c.equals("yes") && !c.equals("no"));
@@ -73,7 +84,7 @@ public class User  extends Utilisateurs  {
  
     }
     
-    public void getAllFriendRqst() throws RemoteException {
+    public void getAllFriendRqst() {
     		while(!this.friendrq.isEmpty()) {
     			this.getFriendReqst();
     		}
