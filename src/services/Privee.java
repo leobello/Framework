@@ -15,22 +15,6 @@ package services;
  */
 public class Privee extends Partage{
 	
-	/* 
-	public Privee(_Utilisateurs owner, Contenu<Types> c ) {
-		// TODO Auto-generated method stub
-		this.owner = owner;
-		this.c = c;
-	}
-	
-	public ArrayList<Contenu<Types>> getPartages(){
-		ArrayList<Contenu<Types>> tmp = new ArrayList<Contenu<Types>>();
-		Utilisateurs owner2 = (Utilisateurs)this.owner;
-		for(Contenu<Types> c : owner2.getPartages()) {
-			System.out.println(c.getPartage().getClass().getName());
-		}
-		return tmp;
-	}
-	*/
 	
 
 }
