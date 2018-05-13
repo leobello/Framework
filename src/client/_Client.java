@@ -56,4 +56,5 @@ public interface _Client extends Remote {
 	
 	public void inscription(String pseudo, String password, String passwordv, int type, int age)
 			throws NotBoundException, FileNotFoundException, IOException,RemoteException;
+	
 }

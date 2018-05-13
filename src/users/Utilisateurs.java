@@ -238,5 +238,20 @@ public abstract class Utilisateurs implements _Utilisateurs, Serializable {
 		Users server = (Users) Naming.lookup(url);
 		server.publier(P);
 	}
+	
+	public Utilisateurs getUser(String pseudo) throws RemoteException, MalformedURLException, NotBoundException{
+		Utilisateurs usr;
+		String url = "rmi://"+Serveur.listen+"/Gnaouas";
+		_Users server = (_Users) Naming.lookup(url);
+		if(server.getUser(pseudo)!=null) {
+			System.out.println("trouvé "+pseudo);
+			if(server.getUser(pseudo).getClass().getName().equals("Diffuseur")) {
+				return new Diffuseur(server.getUser(pseudo).getName(),server.getUser(pseudo).getPassword());
+			}else if(server.getUser(pseudo).getClass().getName().equals("User")) {
+				return new User(server.getUser(pseudo).getName(),server.getUser(pseudo).getPassword(),20);
+			}
+		}
+		return null;
+	}
 
 }

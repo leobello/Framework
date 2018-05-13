@@ -5,6 +5,8 @@
  */
 package users;
 
+import java.net.MalformedURLException;
+import java.rmi.NotBoundException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
@@ -16,6 +18,7 @@ public interface _Utilisateurs extends Remote{
     public String getName() throws RemoteException;
     public String getPassword()throws RemoteException ;
     public void setName(String name) throws RemoteException;
+    public Utilisateurs getUser(String pseudo) throws RemoteException, MalformedURLException, NotBoundException;
     //public void liker();
     //public void disliker();
     //public void commenter();
