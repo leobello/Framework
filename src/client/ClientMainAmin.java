@@ -22,6 +22,7 @@ public class ClientMainAmin {
 			//c.connectUser("amalm","159");
 			Utilisateurs usr=new User("kkl,l,",12);
 			usr=c.connectUser("leo","159");
+			server.getUser("amalm");
 			Utilisateurs usr1=c.connectUser("amalm","159");
 			usr.printFriend();
 		//	usr.beFriend((_Utilisateurs)usr1);
