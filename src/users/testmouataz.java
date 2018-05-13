@@ -5,7 +5,7 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
-import bd._Publications;
+import bd.Users;
 import contenu.Contenu;
 import contenu.Photo;
 import serveur.Serveur;
@@ -21,13 +21,15 @@ public class testmouataz {
 			
 			String url = "rmi://"+Serveur.listen+"/Gnaouas";
 			
-			_Publications  OpenSpace = (_Publications)Naming.lookup(url);
+			Users  OpenSpace = (Users)Naming.lookup(url);
 	
 			Contenu C = new Contenu(new Photo("MouatazPhotoTest.jpg"), pers, new Public());
+			
 			
 			pers.publier(C);
 			
 			OpenSpace.afficher_Publications();			
+
 		}
 		
 
