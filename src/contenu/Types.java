@@ -5,11 +5,13 @@
  */
 package contenu;
 
+import java.io.Serializable;
+
 /**
  *
  * @author near
  */
-public abstract class Types implements _Types{
+public abstract class Types implements _Types, Serializable{
     protected String name;
     protected String path;
 

@@ -131,5 +131,9 @@ public class Contenu implements Serializable{
     		for(Commentaire c : this.commentaires) {
     			System.out.println(c.getComment());
     		}
-    } 
+    }
+
+    public ArrayList<Commentaire> getCommentaires() {
+        return commentaires;
+    }
 }

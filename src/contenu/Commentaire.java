@@ -19,13 +19,10 @@ public class Commentaire extends Types {
     
 	public Commentaire() { super.name = this.getClass().getName(); }
 	
-    public Commentaire(String comment){
-        super.name = this.getClass().getName();
-        this.comment = comment;
-    }
+
     
     public Commentaire(_Utilisateurs user, String comment){
-        super.name = this.getClass().getName();
+        this();
         this.comment = comment;
         this.user = user;
     }

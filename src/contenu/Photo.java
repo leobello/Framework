@@ -5,11 +5,13 @@
  */
 package contenu;
 
+import java.io.Serializable;
+
 /**
  *
  * @author near
  */
-public class Photo extends Types{
+public class Photo extends Types implements Serializable{
     
     public Photo(String path){
         this.name = this.getClass().toString();
