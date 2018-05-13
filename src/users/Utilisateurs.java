@@ -32,11 +32,11 @@ public abstract class Utilisateurs implements _Utilisateurs, Serializable {
 	protected String pseudo;
 	protected String password;
 	protected Photo photoDeProfile;
-	protected ArrayList<_Reactions> reactions;
-	protected ArrayList<Contenu> partages;
-	protected ArrayList<_Utilisateurs> friends;
-	protected ArrayList<_Utilisateurs> followed;
-	protected ArrayList<_Utilisateurs> follow;
+	public ArrayList<_Reactions> reactions;
+	public ArrayList<Contenu> partages;
+	public ArrayList<_Utilisateurs> friends;
+	public ArrayList<_Utilisateurs> followed;
+	public ArrayList<_Utilisateurs> follow;
 	protected boolean admin;
 
 	public Utilisateurs() {
@@ -46,6 +46,7 @@ public abstract class Utilisateurs implements _Utilisateurs, Serializable {
 		this.followed = new ArrayList<_Utilisateurs>();
 		this.follow = new ArrayList<_Utilisateurs>();
 	}
+	
 
 	public String getName() throws RemoteException {
 		return this.pseudo;
