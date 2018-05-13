@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import javax.naming.OperationNotSupportedException;
 
 import bd.Publications;
+import bd.Users;
 import bd._Users;
 import contenu.Commentaire;
 import contenu.Contenu;
@@ -236,7 +237,7 @@ public abstract class Utilisateurs implements _Utilisateurs, Serializable {
 
 	public void publierENPublique(Contenu P) throws MalformedURLException, RemoteException, NotBoundException {
 		String url = "rmi://" + Serveur.listen + "/Gnaouas";
-		Publications server = (Publications) Naming.lookup(url);
+		Users server = (Users) Naming.lookup(url);
 		server.publier(P);
 	}
 
