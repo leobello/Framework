@@ -16,7 +16,6 @@ import java.util.ArrayList;
 
 import javax.naming.OperationNotSupportedException;
 
-import bd.Publications;
 import bd.Users;
 import bd._Users;
 import contenu.Commentaire;
