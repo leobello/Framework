@@ -10,14 +10,12 @@ package contenu;
  * @author near
  */
 public class Photo extends Types{
-    protected String path;
     
     public Photo(String path){
-        super.name = this.getClass().toString();
+        this.name = this.getClass().toString();
         this.path = path;
     }
     
-    String getPath(){return this.path;}
-    void setPath(String path){this.path = path;}
+    public String getPath(){return path;}
     
 }

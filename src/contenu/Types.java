@@ -11,12 +11,13 @@ package contenu;
  */
 public abstract class Types implements _Types{
     protected String name;
+    protected String path;
 
     @Override
     public String getType() {
         return this.name;
     }
-
+    public String getPath() { return this.path; }
     
     
     
