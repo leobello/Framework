@@ -31,10 +31,7 @@ public class Users extends UnicastRemoteObject implements _Users {
 		if (UserArchive.length() > 0 ) {
 			inscrits = lireBDFile();
 			nbInscrit = inscrits.size();
-<<<<<<< Upstream, based on origin/master
-=======
-			//contenuPublique = lireArchiveFile();
->>>>>>> b13fa09 dernier modif
+
 		} else {
 			inscrits = new ArrayList<_Utilisateurs>();
 			nbInscrit = 0;
@@ -159,41 +156,8 @@ public class Users extends UnicastRemoteObject implements _Users {
 		return false;
 	}
 	
-	public void afficher_Utilisateurs() throws RemoteException {
 
-		try {
-			ArrayList<_Utilisateurs> p = getBD();
-			for (_Utilisateurs us : p) {
-				System.out.println(us.getName() +" "+ us.getPassword());
-			}
-		} catch (NullPointerException e) {
-			System.out.println("il n'y aucun utilisateur pour l'instant");
-		}
-	}
-	
-	public boolean UserNameAlreadyExist(String userName) throws RemoteException {
-		for (_Utilisateurs user : inscrits) {
-			if (user.getName().equals(userName)) {
-				return true;
-			}
-		}
-		return false;
-	}
 
-	public int getIndexOfUser(String login) throws RemoteException {
-		for (int i = 0; i < inscrits.size(); i++) {
-			try {
-				if (inscrits.get(i).getName().equals(login)) {
-					return i;
-				}
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		return -1;
-		
-	}
 	
 	public void bannir(Admin admin, String login) throws FileNotFoundException, IOException {
 		//this.inscrits.remove(getIndexOfUser(login)) ;
