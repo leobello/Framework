@@ -126,12 +126,12 @@ public class Client extends UnicastRemoteObject implements _Client {
 			}else {
 				System.out.println("Bienvenue " + login);
 				//System.out.println(server.getUser(login).getName());
+				//System.out.println("Bienvenue" + login);
 				return server.getUser(login);
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return null;
 		}
 		return null;
 	}

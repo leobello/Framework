@@ -1,9 +1,6 @@
 package bd;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.Serializable;
+import java.io.*;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -42,6 +39,27 @@ public class Publications extends UnicastRemoteObject  implements Serializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public ArrayList<Contenu> LireFichierstocke(int nbfile){
+		File f = new File("Archive"+nbfile);
+		if (f.exists()) {
+			try {
+				Deserialization dsz = new Deserialization(f);
+				return (ArrayList<Contenu>) dsz.ObjectLu();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return null;
+		
 	}
 	
 	public void afficher_Publications() {
