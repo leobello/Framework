@@ -6,6 +6,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import contenu.Contenu;
 import users.Admin;
 import users.Utilisateurs;
 import users._Utilisateurs;
@@ -37,4 +38,15 @@ public interface _Users extends Remote{
 	//public void connectUser() throws RemoteException;
 	public void updateUser(_Utilisateurs usr) throws RemoteException;
 	
+	public ArrayList<Contenu> getPublication() throws RemoteException;
+	
+	public String getFIleNameOFArchivePublication() throws RemoteException ;
+	
+	public void ArchiverPublication() throws RemoteException ;
+	
+	public ArrayList<Contenu> lireArchiveFile() throws RemoteException;
+	
+	public void afficher_Publications() throws RemoteException;
+
+	public void publier(Contenu T) throws RemoteException;
 }

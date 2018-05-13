@@ -5,6 +5,7 @@
  */
 package contenu;
 
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,9 +19,13 @@ import users.*;
  * @author near
  *
  */
-public class Contenu{
+public class Contenu implements Serializable{
 	
-    protected Types contenu;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	protected Types contenu;
     protected _Utilisateurs owner;
     protected ArrayList<_Utilisateurs> likes;
     protected ArrayList<_Utilisateurs> dislikes;
@@ -119,7 +124,6 @@ public class Contenu{
 			}
 		}
     }
-    
     public void addComment(Commentaire c) { this.commentaires.add(c); }
     public void removeComment(Commentaire c) { this.commentaires.remove(c); }
     
@@ -127,13 +131,5 @@ public class Contenu{
     		for(Commentaire c : this.commentaires) {
     			System.out.println(c.getComment());
     		}
-    }
-
-
-    
-    
-    
-    
-    
-    
+    } 
 }

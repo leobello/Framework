@@ -234,8 +234,8 @@ public abstract class Utilisateurs implements _Utilisateurs, Serializable {
 	}
 
 	public void publierENPublique(Contenu P) throws MalformedURLException, RemoteException, NotBoundException {
-		String url = "rmi://" + Serveur.listen + "/Gnaouas";
-		Users server = (Users) Naming.lookup(url);
+		String url = "rmi://"+Serveur.listen +"/Gnaouas";
+		_Users server = (_Users) Naming.lookup(url);
 		server.publier(P);
 	}
 	
