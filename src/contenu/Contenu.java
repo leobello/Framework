@@ -5,6 +5,7 @@
  */
 package contenu;
 
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,7 +19,7 @@ import users.*;
  * @author near
  *
  */
-public class Contenu{
+public class Contenu implements Serializable{
 	
     protected Types contenu;
     protected _Utilisateurs owner;
