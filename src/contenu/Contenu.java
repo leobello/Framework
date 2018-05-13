@@ -129,11 +129,7 @@ public class Contenu{
     		}
     }
 
-
-    
-    
-    
-    
-    
-    
+    public ArrayList<Commentaire> getCommentaires() {
+        return commentaires;
+    }
 }
